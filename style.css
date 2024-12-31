@@ -885,6 +885,10 @@ nav {
     font-size: 0.8vmax;
 }
 
+body {
+    overscroll-behavior: none; /* Prevent scrolling outside the viewport */
+}
+
 @media (max-width:600px) {
     #cursor {
         display: none;
@@ -1130,6 +1134,7 @@ nav {
     }
 }
 
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     h1 {
@@ -1159,3 +1164,5 @@ nav {
       font-size: 1.5rem;
     }
   }
+
+

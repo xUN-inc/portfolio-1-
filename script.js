@@ -654,7 +654,7 @@ tl_6.from("#more-projects p", {
         scroller: "#main",
         // markers:true,
         start: "top 95%",
-        end: "top 90%",
+        end: "top 80%",
         scrub: 2
     }
 });
