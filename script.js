@@ -935,27 +935,23 @@ window.addEventListener('mousemove', (event) => {
     mouse.y = event.y;
 });
 
-window.addEventListener('touchmove', (event) => {
+canvas.addEventListener('touchstart', (event) => {
     event.preventDefault();
-    mouse.x = event.touches[0].clientX;
-    mouse.y = event.touches[0].clientY;
+    // Ensure no mouse interaction during touch start, allowing for scrolling
+    mouse.x = undefined;
+    mouse.y = undefined;
 });
 
+canvas.addEventListener('touchmove', (event) => {
+    event.preventDefault();
+    // You can opt to not update `mouse.x` and `mouse.y` here, to allow scrolling
+});
+
+// Keep the resize listener to adjust the canvas size
 window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
     bubbles = skills.map(skill => new Bubble(skill));
-});
-
-canvas.addEventListener('touchstart', (event) => {
-    event.preventDefault();
-    mouse.x = event.touches[0].clientX;
-    mouse.y = event.touches[0].clientY;
-});
-
-canvas.addEventListener('touchend', () => {
-    mouse.x = undefined;
-    mouse.y = undefined;
 });
 
 // Start animation

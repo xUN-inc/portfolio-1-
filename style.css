@@ -1129,3 +1129,33 @@ nav {
         width: 10%;
     }
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+      font-size: 2rem; /* Adjust the font size for smaller screens */
+    }
+  
+    #intro-center {
+      padding: 10px;
+    }
+  
+    #heading1 h1, #heading2 h1, #heading3 h1 {
+      font-size: 1.5rem; /* Further reduce font size for very small screens */
+    }
+    
+    #typed {
+      font-size: 2rem; /* Adjust typed text size on small screens */
+    }
+  }
+  
+  /* Additional responsiveness for very small screens (like phones in portrait mode) */
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+    
+    #typed {
+      font-size: 1.5rem;
+    }
+  }
