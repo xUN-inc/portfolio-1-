@@ -5,10 +5,14 @@ function loco() {
         smooth: true,
         lerp: 0.05
     });
+
+    // Scroll-to-Top Button
     const toTop = document.querySelector('#foot-to-top > img');
     toTop.addEventListener('click', () => {
         locoScroll.scrollTo(0);
     });
+
+    // Section Navigation
     const toAbout = document.querySelector('#to-about');
     toAbout.addEventListener('click', () => {
         locoScroll.scrollTo(window.innerHeight);
@@ -25,6 +29,8 @@ function loco() {
     toProjects.addEventListener('click', () => {
         locoScroll.scrollTo(window.innerHeight * 6.3);
     });
+
+    // Sync LocomotiveScroll with ScrollTrigger
     locoScroll.on("scroll", ScrollTrigger.update);
     ScrollTrigger.scrollerProxy("#main", {
         scrollTop(value) {
@@ -35,6 +41,16 @@ function loco() {
         },
         pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
     });
+
+    // Prevent auto-scrolling to top at the end of the page
+    locoScroll.on("call", (func) => {
+        if (func === "end") {
+            // Ensure no unintended scroll-to-top behavior occurs
+            locoScroll.stop();
+        }
+    });
+
+    // Ensure LocomotiveScroll and ScrollTrigger refresh properly
     ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
     ScrollTrigger.refresh();
 }
