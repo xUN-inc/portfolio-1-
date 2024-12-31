@@ -826,7 +826,6 @@ const skills = [
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const labelsContainer = document.getElementById('labels-container');
-// const hiddenImages = document.getElementById('hidden-images');
 
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
@@ -850,12 +849,6 @@ class Bubble {
         this.originalRadius = this.radius;
         this.rotation = Math.random() * 360;
         this.rotationSpeed = (Math.random() - 0.5) * 2;
-
-        // Create label element
-        this.label = document.createElement('div');
-        this.label.className = 'skill-label';
-        this.label.textContent = skill.name;
-        labelsContainer.appendChild(this.label);
     }
 
     draw() {
@@ -885,11 +878,6 @@ class Bubble {
         }
 
         ctx.restore();
-
-        // Update label position
-        this.label.style.left = `${this.x - this.radius}px`;
-        this.label.style.top = `${this.y - this.radius - 20}px`;
-        this.label.style.width = `${this.radius * 2}px`;
     }
 
     update() {
@@ -904,24 +892,11 @@ class Bubble {
         this.y += this.dy;
         this.rotation += this.rotationSpeed;
 
-        // Mouse interaction
-        if (mouse.x - this.x < 80 && mouse.x - this.x > -80
-            && mouse.y - this.y < 80 && mouse.y - this.y > -80) {
-            if (this.radius < this.originalRadius + 20) {
-                this.radius += 2;
-                this.label.style.opacity = '1';
-            }
-        } else if (this.radius > this.originalRadius) {
-            this.radius -= 2;
-            this.label.style.opacity = '0';
-        }
-
         this.draw();
     }
 }
 
 let bubbles = skills.map(skill => new Bubble(skill));
-const mouse = { x: undefined, y: undefined };
 
 function animate() {
     ctx.clearRect(0, 0, width, height);
@@ -929,25 +904,7 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-// Event Listeners
-window.addEventListener('mousemove', (event) => {
-    mouse.x = event.x;
-    mouse.y = event.y;
-});
-
-canvas.addEventListener('touchstart', (event) => {
-    event.preventDefault();
-    // Ensure no mouse interaction during touch start, allowing for scrolling
-    mouse.x = undefined;
-    mouse.y = undefined;
-});
-
-canvas.addEventListener('touchmove', (event) => {
-    event.preventDefault();
-    // You can opt to not update `mouse.x` and `mouse.y` here, to allow scrolling
-});
-
-// Keep the resize listener to adjust the canvas size
+// Event Listener for resizing
 window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
