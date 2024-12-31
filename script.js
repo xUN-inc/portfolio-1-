@@ -240,6 +240,76 @@ tl_4.from("#technical-skill-header p, #technical-skill-header h1", {
         trigger: "#technical-skill-header h1",
         scroller: "#main",
         // markers:true,
+        start: "top 85%",
+        end: "top 65%",
+        scrub: 2
+    }
+});
+tl_4.to(".html", {
+    width: "95%",
+    scrollTrigger: {
+        trigger: ".html",
+        scroller: "#main",
+        // markers:true,
+        start: "top 90%",
+        end: "top 70%",
+        scrub: 2
+    }
+});
+tl_4.to(".cpp", {
+    width: "70%",
+    scrollTrigger: {
+        trigger: ".cpp",
+        scroller: "#main",
+        // markers:true,
+        start: "top 90%",
+        end: "top 70%",
+        scrub: 2
+    }
+});
+tl_4.to(".java", {
+    width: "90%",
+    scrollTrigger: {
+        trigger: ".java",
+        scroller: "#main",
+        // markers:true,
+        start: "top 90%",
+        end: "top 70%",
+        scrub: 2
+    }
+});
+tl_4.to(".py", {
+    width: "80%",
+    scrollTrigger: {
+        trigger: ".py",
+        scroller: "#main",
+        // markers:true,
+        start: "top 90%",
+        end: "top 70%",
+        scrub: 2
+    }
+});
+tl_4.to(".php", {
+    width: "65%",
+    scrollTrigger: {
+        trigger: ".php",
+        scroller: "#main",
+        // markers:true,
+        start: "top 90%",
+        end: "top 70%",
+        scrub: 2
+    }
+});
+
+var tl_4 = gsap.timeline();
+tl_4.from("#technical-skill-header p, #technical-skill-header h1", {
+    y: 200,
+    opacity: 0,
+    stagger: 0.2,
+    scrollTrigger: {
+        trigger: "#technical-skill-header h1",
+        scroller: "#main",
+        // markers:true,
         start: "top 90%",
         end: "top 75%",
         scrub: 2
@@ -890,3 +960,20 @@ canvas.addEventListener('touchend', () => {
 
 // Start animation
 animate();
+
+// Function to check the user's country based on IP
+fetch('https://ipinfo.io?token=a3cf2d8d2cf935')  // Your API key is now used here
+    .then(response => response.json())
+    .then(data => {
+        const country = data.country;
+
+        // Check if the country is India (IN)
+        if (country === 'IN') {
+            // Redirect to a restricted page if the user is from India
+            window.location.href = 'https://www.linkedin.com/in/akshunchauhan/';
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching IP info:', error);
+    });
+

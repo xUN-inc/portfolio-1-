@@ -284,7 +284,7 @@ nav {
 #about-content {
     display: flex;
     width: 100%;
-    height: 80%;
+    height: 100%;
 }
 
 #about-img {
@@ -435,7 +435,7 @@ nav {
 }
 
 #technical-skill-page {
-    height: 230vh;
+    height: 180vh;
     width: 100vw;
     background-color: #000;
 }
@@ -530,111 +530,25 @@ nav {
 }
 
 .html {
-    background-color: #FF7816;
-}
-
-.css {
-    background-color: #2196F3;
-}
-
-.js {
-    background-color: #FFDF00;
-}
-
-.gsap {
-    background-color: #93D400;
-}
-
-.tail {
-    background-color: #3DAEAF;
-}
-
-.boot {
-    background-color: #860AFB;
+    background-color: #21f321;
 }
 
 .cpp {
-    background-color: #00589D;
+    background-color: #f3aa21;
 }
 
-.c {
-    background-color: #00589D;
-}
 
 .java {
-    background-color: #F89917;
+    background-color: #21f321;
 }
 
 .py {
-    background-color: #FFDD55;
+    background-color: #f3f021;
 }
 
-.react {
-    background-color: #00D8FF;
-}
-
-.redux {
-    background-color: #6737B8;
-}
-
-.dj {
-    background-color: #092E20;
-}
-
-.next {
-    background-color: #71D4CE;
-}
-
-.ts {
-    background-color: #2D79C7;
-}
-
-.node {
-    background-color: #56A645;
-}
-
-.exp {
-    background-color: #F1C40F;
-}
 
 .php {
-    background-color: #777BB3;
-}
-
-.dsa {
-    background-color: #ED6571;
-}
-
-.post {
-    background-color: #336791;
-}
-
-.mongo {
-    background-color: #439934;
-}
-
-.mysql {
-    background-color: #00758F;
-}
-
-.canva {
-    background-color: #4C49F0;
-}
-
-.figma {
-    background-color: #B659FF;
-}
-
-.git {
-    background-color: #F05033;
-}
-
-.socket {
-    background-color: #747474;
-}
-
-.framer {
-    background-color: #E43090;
+    background-color: #f3aa21;
 }
 
 #non-technical-skill-page {
@@ -650,7 +564,7 @@ nav {
     height: 20%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; 
     align-items: flex-start;
     padding: 0vmax 8vmax;
 }
@@ -735,7 +649,7 @@ nav {
 }
 
 #project-page {
-    height: 415vh;
+    height: 355vh;
     width: 100vw;
     background-color: #000;
 }
