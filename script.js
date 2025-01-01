@@ -1,75 +1,46 @@
 function loco() {
     gsap.registerPlugin(ScrollTrigger);
-    
-    // Check if device is iOS
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    
     const locoScroll = new LocomotiveScroll({
         el: document.querySelector("#main"),
-        smooth: !isIOS, // Disable smooth scrolling on iOS
-        lerp: isIOS ? 1 : 0.05, // Use instant lerp on iOS
-        smartphone: {
-            smooth: false, // Explicitly disable smooth scrolling on mobile
-            breakpoint: 767
-        },
+        smooth: true,
+        lerp: 0.05,
         tablet: {
-            smooth: false, // Explicitly disable smooth scrolling on tablets
-            breakpoint: 1024
+            smooth: true
+        },
+        smartphone: {
+            smooth: true
         }
     });
-
-    // Modified scroll functions for better iOS compatibility
-    const smoothScrollTo = (target) => {
-        if (isIOS) {
-            // Use native scrolling on iOS
-            document.querySelector("#main").scrollTo({
-                top: target,
-                behavior: 'smooth'
-            });
-        } else {
-            locoScroll.scrollTo(target);
-        }
-    };
 
     // Scroll-to-Top Button
     const toTop = document.querySelector('#foot-to-top > img');
     toTop.addEventListener('click', () => {
-        smoothScrollTo(0);
+        locoScroll.scrollTo(0);
     });
 
-    // Section Navigation with modified scroll behavior
+    // Section Navigation
     const toAbout = document.querySelector('#to-about');
     toAbout.addEventListener('click', () => {
-        smoothScrollTo(window.innerHeight);
+        locoScroll.scrollTo(window.innerHeight);
     });
-    
     const toEducation = document.querySelector('#to-education');
     toEducation.addEventListener('click', () => {
-        smoothScrollTo(window.innerHeight * 2);
+        locoScroll.scrollTo(window.innerHeight * 2);
     });
-    
     const toSkills = document.querySelector('#to-skills');
     toSkills.addEventListener('click', () => {
-        smoothScrollTo(window.innerHeight * 3);
+        locoScroll.scrollTo(window.innerHeight * 3);
     });
-    
     const toProjects = document.querySelector('#to-projects');
     toProjects.addEventListener('click', () => {
-        smoothScrollTo(window.innerHeight * 6.3);
+        locoScroll.scrollTo(window.innerHeight * 6.3);
     });
 
-    // Modified ScrollTrigger setup
+    // Sync LocomotiveScroll with ScrollTrigger
     locoScroll.on("scroll", ScrollTrigger.update);
     ScrollTrigger.scrollerProxy("#main", {
         scrollTop(value) {
-            if (arguments.length) {
-                if (isIOS) {
-                    document.querySelector("#main").scrollTop = value;
-                } else {
-                    locoScroll.scrollTo(value, 0, 0);
-                }
-            }
-            return isIOS ? document.querySelector("#main").scrollTop : locoScroll.scroll.instance.scroll.y;
+            return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
         },
         getBoundingClientRect() {
             return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
@@ -77,17 +48,7 @@ function loco() {
         pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
     });
 
-    // Prevent scroll issues at page end
-    if (!isIOS) {
-        locoScroll.on("call", (func) => {
-            if (func === "end") {
-                locoScroll.update();
-            }
-        });
-    }
-
-    // Ensure proper updates and refreshes
-    ScrollTrigger.addEventListener("refresh", () => !isIOS && locoScroll.update());
+    ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
     ScrollTrigger.refresh();
 }
 
