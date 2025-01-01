@@ -930,19 +930,28 @@ window.addEventListener('resize', () => {
 // Start animation
 animate();
 
-// Function to check the user's country based on IP
-fetch('https://ipinfo.io?token=a3cf2d8d2cf935')  // Your API key is now used here
-    .then(response => response.json())
-    .then(data => {
-        const country = data.country;
+// // Function to check the user's country based on IP
+// fetch('https://ipinfo.io?token=a3cf2d8d2cf935') // Your API key
+//     .then(response => response.json())
+//     .then(data => {
+//         const country = data.country;
 
-        // Check if the country is India (IN)
-        if (country === 'IN') {
-            // Redirect to a restricted page if the user is from India
-            window.location.href = 'https://www.linkedin.com/in/akshunchauhan/';
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching IP info:', error);
-    });
+//         // Check if the country is India (IN)
+//         if (country === 'IN') {
+//             // Save a flag in sessionStorage to indicate the user is blocked
+//             sessionStorage.setItem('blocked', 'true');
+//             // Redirect to a restricted page
+//             window.location.href = 'https://www.linkedin.com/in/akshunchauhan/';
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error fetching IP info:', error);
+//     });
+
+// // Check if the user is already blocked in the current session
+// if (sessionStorage.getItem('blocked') === 'true') {
+//     // Immediately redirect without fetching IP again
+//     window.location.href = 'https://www.linkedin.com/in/akshunchauhan/';
+// }
+
 
