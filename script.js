@@ -1,40 +1,75 @@
 function loco() {
     gsap.registerPlugin(ScrollTrigger);
+    
+    // Check if device is iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    
     const locoScroll = new LocomotiveScroll({
         el: document.querySelector("#main"),
-        smooth: true,
-        lerp: 0.05
+        smooth: !isIOS, // Disable smooth scrolling on iOS
+        lerp: isIOS ? 1 : 0.05, // Use instant lerp on iOS
+        smartphone: {
+            smooth: false, // Explicitly disable smooth scrolling on mobile
+            breakpoint: 767
+        },
+        tablet: {
+            smooth: false, // Explicitly disable smooth scrolling on tablets
+            breakpoint: 1024
+        }
     });
+
+    // Modified scroll functions for better iOS compatibility
+    const smoothScrollTo = (target) => {
+        if (isIOS) {
+            // Use native scrolling on iOS
+            document.querySelector("#main").scrollTo({
+                top: target,
+                behavior: 'smooth'
+            });
+        } else {
+            locoScroll.scrollTo(target);
+        }
+    };
 
     // Scroll-to-Top Button
     const toTop = document.querySelector('#foot-to-top > img');
     toTop.addEventListener('click', () => {
-        locoScroll.scrollTo(0);
+        smoothScrollTo(0);
     });
 
-    // Section Navigation
+    // Section Navigation with modified scroll behavior
     const toAbout = document.querySelector('#to-about');
     toAbout.addEventListener('click', () => {
-        locoScroll.scrollTo(window.innerHeight);
+        smoothScrollTo(window.innerHeight);
     });
+    
     const toEducation = document.querySelector('#to-education');
     toEducation.addEventListener('click', () => {
-        locoScroll.scrollTo(window.innerHeight * 2);
+        smoothScrollTo(window.innerHeight * 2);
     });
+    
     const toSkills = document.querySelector('#to-skills');
     toSkills.addEventListener('click', () => {
-        locoScroll.scrollTo(window.innerHeight * 3);
+        smoothScrollTo(window.innerHeight * 3);
     });
+    
     const toProjects = document.querySelector('#to-projects');
     toProjects.addEventListener('click', () => {
-        locoScroll.scrollTo(window.innerHeight * 6.3);
+        smoothScrollTo(window.innerHeight * 6.3);
     });
 
-    // Sync LocomotiveScroll with ScrollTrigger
+    // Modified ScrollTrigger setup
     locoScroll.on("scroll", ScrollTrigger.update);
     ScrollTrigger.scrollerProxy("#main", {
         scrollTop(value) {
-            return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
+            if (arguments.length) {
+                if (isIOS) {
+                    document.querySelector("#main").scrollTop = value;
+                } else {
+                    locoScroll.scrollTo(value, 0, 0);
+                }
+            }
+            return isIOS ? document.querySelector("#main").scrollTop : locoScroll.scroll.instance.scroll.y;
         },
         getBoundingClientRect() {
             return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
@@ -42,18 +77,20 @@ function loco() {
         pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
     });
 
-    // Prevent auto-scrolling to top at the end of the page
-    locoScroll.on("call", (func) => {
-        if (func === "end") {
-            // Ensure no unintended scroll-to-top behavior occurs
-            locoScroll.stop();
-        }
-    });
+    // Prevent scroll issues at page end
+    if (!isIOS) {
+        locoScroll.on("call", (func) => {
+            if (func === "end") {
+                locoScroll.update();
+            }
+        });
+    }
 
-    // Ensure LocomotiveScroll and ScrollTrigger refresh properly
-    ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+    // Ensure proper updates and refreshes
+    ScrollTrigger.addEventListener("refresh", () => !isIOS && locoScroll.update());
     ScrollTrigger.refresh();
 }
+
 loco();
 
 function cursorAnimation() {
@@ -930,28 +967,28 @@ window.addEventListener('resize', () => {
 // Start animation
 animate();
 
-// // Function to check the user's country based on IP
-// fetch('https://ipinfo.io?token=a3cf2d8d2cf935') // Your API key
-//     .then(response => response.json())
-//     .then(data => {
-//         const country = data.country;
+// Function to check the user's country based on IP
+fetch('https://ipinfo.io?token=a3cf2d8d2cf935') // Your API key
+    .then(response => response.json())
+    .then(data => {
+        const country = data.country;
 
-//         // Check if the country is India (IN)
-//         if (country === 'IN') {
-//             // Save a flag in sessionStorage to indicate the user is blocked
-//             sessionStorage.setItem('blocked', 'true');
-//             // Redirect to a restricted page
-//             window.location.href = 'https://www.linkedin.com/in/akshunchauhan/';
-//         }
-//     })
-//     .catch(error => {
-//         console.error('Error fetching IP info:', error);
-//     });
+        // Check if the country is India (IN)
+        if (country === 'IN') {
+            // Save a flag in sessionStorage to indicate the user is blocked
+            sessionStorage.setItem('blocked', 'true');
+            // Redirect to a restricted page
+            window.location.href = 'https://www.linkedin.com/in/akshunchauhan/';
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching IP info:', error);
+    });
 
-// // Check if the user is already blocked in the current session
-// if (sessionStorage.getItem('blocked') === 'true') {
-//     // Immediately redirect without fetching IP again
-//     window.location.href = 'https://www.linkedin.com/in/akshunchauhan/';
-// }
+// Check if the user is already blocked in the current session
+if (sessionStorage.getItem('blocked') === 'true') {
+    // Immediately redirect without fetching IP again
+    window.location.href = 'https://www.linkedin.com/in/akshunchauhan/';
+}
 
 
