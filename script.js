@@ -13,10 +13,10 @@ function loco() {
     });
 
     // Scroll-to-Top Button
-    const toTop = document.querySelector('#foot-to-top > img');
-    toTop.addEventListener('click', () => {
-        locoScroll.scrollTo(0);
-    });
+    // const toTop = document.querySelector('#foot-to-top > img');
+    // toTop.addEventListener('click', () => {
+    //     locoScroll.scrollTo(0);
+    // });
 
     // Section Navigation
     const toAbout = document.querySelector('#to-about');
