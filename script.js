@@ -1,4 +1,5 @@
 import { programmingYears } from "./lib/profile-story.mjs";
+import { mountSelectedWork } from "./lib/selected-work.mjs";
 import { mountNewsRotation, mountPostcard } from "./lib/exploration.mjs";
 import { answerQuestion } from "./lib/portfolio.mjs";
 import { mountRepositoryLibrary } from "./lib/repository-library.mjs";
@@ -9,6 +10,7 @@ const bootstrap = JSON.parse(
 );
 let profile = bootstrap.profile;
 let repos = bootstrap.repos;
+mountSelectedWork(profile);
 mountRepositoryLibrary(profile, repos, (updated) => (repos = updated));
 document
   .querySelectorAll("[data-programming-years]")
@@ -155,13 +157,9 @@ function respond(question) {
   const trimmed = question.trim().slice(0, 1000);
   if (!trimmed) return;
   appendMessage("user", trimmed);
-  let answer;
-  if (
-    lastAnswer &&
-    /^(tell me more|more|what else|go on)[?.! ]*$/i.test(trimmed)
-  )
-    answer = lastAnswer;
-  else answer = answerQuestion(trimmed, profile, repos);
+  const answer = answerQuestion(trimmed, profile, repos, {
+    previous: lastAnswer,
+  });
   lastAnswer = answer;
   const message = appendMessage("assistant", answer.text);
   const label = document.createElement("span");
@@ -188,6 +186,18 @@ function respond(question) {
       sources.append(link);
     }
     message.append(sources);
+  }
+  if (answer.followUps?.length) {
+    const followUps = document.createElement("div");
+    followUps.className = "chat-prompts chat-followups";
+    for (const suggestion of answer.followUps.slice(0, 3)) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = suggestion.label;
+      button.addEventListener("click", () => respond(suggestion.question));
+      followUps.append(button);
+    }
+    message.append(followUps);
   }
   document.querySelector("#chat-prompts").hidden = true;
   input.value = "";

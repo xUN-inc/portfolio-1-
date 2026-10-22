@@ -25,7 +25,7 @@ const status = {
 };
 const agent = {
   "User-Agent":
-    "AkshunPortfolio/3.0 (public professional mentions; contact: akshunchauhan099@gmail.com)",
+    "AkshunPortfolio/3.0 (public professional mentions; contact: ak@xuninnovation.ca)",
   Accept: "text/html,application/rss+xml,application/json",
 };
 async function get(url, extra = {}) {

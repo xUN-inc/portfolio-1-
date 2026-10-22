@@ -3669,7 +3669,7 @@ body {
   overflow: hidden;
 }
 .recommendation-stage .recommendation:after {
-  content: "✳";
+  content: "↗";
   position: absolute;
   right: 28px;
   top: 32px;
@@ -5742,7 +5742,7 @@ body {
   position: relative;
 }
 .avatar-ring:after {
-  content: "✳";
+  content: "↗";
   position: absolute;
   bottom: -3px;
   right: -5px;
@@ -8062,37 +8062,6 @@ body {
   font-size: 16px;
   color: #597451;
   max-width: 500px;
-}
-@media (min-width: 681px) {
-  .project-card[data-visibility="private"] {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column: 1/-1;
-    gap: 0 32px;
-    align-content: start;
-  }
-  .project-card[data-visibility="private"] > .project-image {
-    grid-column: 1;
-    grid-row: 1/6;
-    min-height: 280px;
-    height: 100%;
-    aspect-ratio: auto;
-  }
-  .project-card[data-visibility="private"] > .project-meta {
-    margin-top: 12px;
-  }
-  .project-card[data-visibility="private"] > .project-technologies {
-    align-self: end;
-  }
-  .project-card[data-visibility="private"] > .project-title h3 {
-    font-size: 30px;
-  }
-  .project-card[data-visibility="private"] > .project-title {
-    margin-top: 22px;
-  }
-  .project-card[data-visibility="private"] > p {
-    margin-top: 18px;
-  }
 }
 @media (max-width: 1000px) and (min-width: 681px) {
   .story-metrics {

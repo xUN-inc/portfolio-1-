@@ -3,7 +3,7 @@
   "shortName": "AK",
   "title": "Scientific Data Analyst & Software Developer",
   "location": "Red Deer, Alberta, Canada",
-  "email": "akshunchauhan099@gmail.com",
+  "email": "ak@xuninnovation.ca",
   "github": "AkshunChauhan",
   "linkedin": "https://www.linkedin.com/in/akshunchauhan/",
   "bio": "I work at the intersection of applied research, data, and software. At Red Deer Polytechnic, I connect IoT sensors, cloud infrastructure, and analysis to help make sense of energy systems. Alongside that work, I build applications and explore how AI can turn complex information into something people can use.",
@@ -12,61 +12,64 @@
   "githubSnapshotAt": "2026-10-21T04:26:26.583Z",
   "projects": [
     {
-      "slug": "conf-rag",
-      "name": "ConfRAG",
-      "eyebrow": "LOCAL AI · KNOWLEDGE SYSTEMS",
+      "slug": "agrag",
+      "name": "AgRag",
+      "eyebrow": "LOCAL AI · MULTI-AGENT RETRIEVAL",
       "category": "ai",
-      "year": "2026",
-      "summary": "Turn a folder of conference notes into a conversation. Local AI, conference-scoped retrieval, and answers linked to their source notes.",
       "tags": [
         "Python",
-        "FastAPI",
         "Ollama",
-        "ChromaDB"
+        "NumPy"
       ],
-      "repo": "https://github.com/AkshunChauhan/Conf-RAG",
-      "challenge": "Useful ideas disappear inside meeting notes and conference documents. How can you ask questions across that material while keeping inference on your own machine?",
-      "approach": "A FastAPI application organizes notes by conference. Documents are split into overlapping chunks, embedded with Ollama, and stored in ChromaDB. Questions retrieve only the selected conference’s notes, and the model is prompted to cite its sources.",
-      "outcome": "A runnable local knowledge tool with document uploads, note retrieval, and shareable conference views. It explores the complete path from an uploaded document to a grounded answer.",
+      "summary": "One question, several perspectives. A local command-line RAG system with document ingestion, shared agent memory, and configurable model routing.",
+      "challenge": "How can several specialist agents work over the same documents while keeping model inference on local infrastructure?",
+      "approach": "A Python CLI connects document parsers, a NumPy similarity store, and Ollama. Reader and analyst agents share context; commands configure models, spawn additional agents, and compare sequential and parallel execution. The implementation builds on llama-cpp-agent components.",
+      "outcome": "An implemented local retrieval and orchestration project. Its strongest story is the control over ingestion, context, and agent execution; hardware performance depends on the models and machine used.",
       "facts": [
-        "Conference-scoped retrieval",
-        "Local model inference",
-        "Source-linked answers"
+        "Multi-format document ingestion",
+        "Shared agent context",
+        "Configurable local model routing"
       ],
+      "repo": "",
+      "source": "",
+      "sourceLabel": "Private project · case study",
+      "visibility": "private",
+      "year": "2026",
+      "role": "Project development",
       "featured": true,
-      "role": "Independent project development",
-      "sourceLabel": "Explore the public source",
-      "source": "https://github.com/AkshunChauhan/Conf-RAG",
-      "image": "images/projects/confrag-interface.jpg",
-      "imageAlt": "ConfRAG original interface",
-      "imageCaption": "Original frontend · local interface preview"
+      "image": "images/projects/agrag-local.jpg",
+      "imageAlt": "Verbatim output captured from a local AgRag interactive CLI session showing its commands and agent configuration",
+      "imageCaption": "Verbatim CLI session · local execution"
     },
     {
-      "slug": "restaurant-voice-agent",
-      "name": "Restaurant Voice Agent",
-      "eyebrow": "VOICE AI · BUSINESS AUTOMATION",
-      "category": "ai",
-      "year": "2026",
-      "summary": "From a phone call to a kitchen workflow. A restaurant voice agent with menu-aware conversations, tool calling, and a live kitchen dashboard.",
+      "slug": "focusreport",
+      "name": "FocusReport",
+      "eyebrow": "NATIVE MACOS · SESSION REPORTING",
+      "category": "web",
       "tags": [
-        "Node.js",
-        "Twilio",
-        "Socket.io",
-        "LLM tools"
+        "Swift",
+        "SwiftUI",
+        "macOS"
       ],
-      "repo": "https://github.com/AkshunChauhan/AI-CALLING-AGENT",
-      "challenge": "A restaurant phone call can involve menus, orders, reservations, payment, and a handoff to a person. The interesting problem is connecting a natural conversation to those concrete workflows.",
-      "approach": "Twilio webhooks manage speech and call state. An LLM tool-calling loop connects the conversation to restaurant operations, while Socket.io sends order updates to the kitchen. Each call is associated with a restaurant tenant.",
-      "outcome": "A public working prototype connecting voice, restaurant operations, and real-time interfaces. The source includes call transcripts, human handoff, and order dispatch flows; the repository documents setup and its current state.",
+      "summary": "From a work session to a readable report. A native macOS app with session controls, permission checks, and PDF generation.",
+      "challenge": "A useful work-session record needs a clear start and finish, understandable permissions, and an output someone can read later.",
+      "approach": "SwiftUI provides the desktop dashboard. A session manager handles start, pause, and stop controls, checks macOS permissions, and collects permitted activity signals. A separate PDF generator turns session data into a report.",
+      "outcome": "A native Swift project connecting operating-system integration with document generation. Activity signals describe a session; they do not establish the quality of work or a person’s productivity.",
       "facts": [
-        "Voice-to-workflow prototype",
-        "Live kitchen updates",
-        "Restaurant-aware sessions"
+        "Native SwiftUI dashboard",
+        "Start, pause & stop sessions",
+        "PDF report generation"
       ],
-      "featured": false,
-      "role": "Independent project development",
+      "repo": "https://github.com/AkshunChauhan/FocusReport",
+      "source": "https://github.com/AkshunChauhan/FocusReport",
       "sourceLabel": "Explore the public source",
-      "source": "https://github.com/AkshunChauhan/AI-CALLING-AGENT"
+      "visibility": "public",
+      "year": "2026",
+      "role": "Project development",
+      "featured": true,
+      "image": "images/projects/focusreport-local.jpg",
+      "imageAlt": "FocusReport running its native SwiftUI idle dashboard with a system permissions notice",
+      "imageCaption": "Native macOS app · idle dashboard"
     },
     {
       "slug": "cashvault",
@@ -90,38 +93,13 @@
         "Cash denomination inventory",
         "IOUs and CSV export"
       ],
-      "featured": false,
+      "featured": true,
       "role": "Independent project development",
       "sourceLabel": "Explore the public source",
-      "source": "https://github.com/AkshunChauhan/CashVault"
-    },
-    {
-      "slug": "pilates-workout-platform",
-      "name": "Pilates Workout Platform",
-      "eyebrow": "MOBILE & WEB · IN DEVELOPMENT",
-      "category": "web",
-      "year": "2026",
-      "summary": "A connected workout experience for individuals and teams. Mobile delivery, a web administration app, and a Firebase backend, currently in development.",
-      "role": "Application development",
-      "tags": [
-        "React Native",
-        "Expo",
-        "React",
-        "Firebase"
-      ],
-      "repo": "",
-      "source": "",
-      "sourceLabel": "Project summary shared with permission",
-      "visibility": "private",
-      "featured": false,
-      "challenge": "A workout platform needs to connect individual members, team access, workout content, and administration across mobile and web experiences.",
-      "approach": "The implementation brings together React Native with Expo for the mobile app, React for web administration, and Firebase services. Work spans the user experience, managed backend, and local verification of the delivery foundation.",
-      "outcome": "An active development project with a reference prototype, mobile implementation, web administration, and backend foundation. Production release and physical-device acceptance remain ongoing work; the source code is private.",
-      "facts": [
-        "Mobile + web administration",
-        "Individual and team experiences",
-        "In active development · private source"
-      ]
+      "source": "https://github.com/AkshunChauhan/CashVault",
+      "image": "images/projects/cashvault-local.jpg",
+      "imageAlt": "CashVault running its original mobile transaction form with bill denominations and category controls",
+      "imageCaption": "Original Flutter app · transaction form"
     },
     {
       "slug": "asteroid",
@@ -155,63 +133,65 @@
       "imageCaption": "Live project capture · October 2026"
     },
     {
-      "slug": "energy-innovation-link",
-      "name": "Energy Innovation Link",
-      "eyebrow": "ENERGY RESEARCH · DATA INFRASTRUCTURE",
-      "category": "research",
-      "year": "2024–25",
-      "summary": "From sensor to insight. A desktop application that makes cloud-hosted research data accessible without writing SQL.",
-      "role": "Application development · Data integration",
-      "tags": [
-        "Electron",
-        "TypeScript",
-        "PostgreSQL",
-        "Azure"
-      ],
-      "repo": "https://github.com/eicdevs/Energy-Innovation-Link",
-      "source": "https://www.linkedin.com/in/akshunchauhan/",
-      "sourceLabel": "View professional profile",
-      "image": "images/projects/EIL.png",
-      "imageAlt": "Energy Innovation Link desktop application interface",
-      "challenge": "Research data is valuable only when people can access it. Energy researchers needed a simpler way to retrieve IoT measurements stored in the cloud without depending on SQL expertise.",
-      "approach": "I developed a desktop application with Electron, React, Vite, and TypeScript, connecting a PostgreSQL data layer with Azure infrastructure. The interface lets researchers select and download data for their work.",
-      "outcome": "Designed for internal use at Red Deer Polytechnic, Energy Innovation Link connects software development with applied energy research. It gives researchers an interface for retrieving cloud-hosted measurements and is referenced in a colleague’s professional recommendation.",
-      "facts": [
-        "Desktop application",
-        "IoT-to-cloud data access",
-        "Built for applied research"
-      ],
+      "slug": "trace",
+      "name": "TRACE",
+      "eyebrow": "SEMANTIC SEARCH / EDUCATION",
+      "category": "ai",
+      "year": "2024",
       "featured": true,
-      "imageCaption": "Original application screenshot"
+      "image": "images/projects/TRACE.png",
+      "imageAlt": "TRACE desktop application comparing course learning outcomes",
+      "imageCaption": "Original desktop application screenshot",
+      "tags": [
+        "Python",
+        "PyQt5",
+        "NLP"
+      ],
+      "repo": "https://github.com/AkshunChauhan/TRACE",
+      "demo": "",
+      "role": "Developer · RDP capstone",
+      "summary": "Comparing course learning outcomes by meaning, helping educators see what changed across a curriculum.",
+      "facts": [
+        "Sentence Transformer semantic similarity",
+        "Excel input and exportable comparisons",
+        "Multithreaded PyQt5 desktop interface"
+      ],
+      "challenge": "Curriculum reviews involve comparing learning outcomes across many spreadsheets. Keyword matching misses changes in wording that preserve the same meaning.",
+      "approach": "Built a Python desktop workflow using the all-MiniLM-L6-v2 Sentence Transformer model, adjustable similarity thresholds, and background processing so large comparisons do not freeze the interface.",
+      "outcome": "A capstone application that lets reviewers select Excel files, inspect semantic matches, and export comparison reports. Similarity scores support human review rather than deciding course equivalency.",
+      "source": "https://github.com/AkshunChauhan/TRACE",
+      "sourceLabel": "Read the project documentation"
     },
     {
-      "slug": "sentinel-rag",
-      "name": "Sentinel RAG",
-      "eyebrow": "LOCAL AI · DOCUMENT INTELLIGENCE",
-      "category": "ai",
-      "year": "2026",
-      "summary": "Document intelligence with privacy in mind. Local retrieval and offline inference for working with your own information.",
-      "role": "Open-source project",
+      "slug": "roomquest",
+      "name": "RoomQuest",
+      "eyebrow": "CAMPUS WAYFINDING · PATHFINDING",
+      "category": "research",
       "tags": [
-        "FastAPI",
         "React",
         "TypeScript",
-        "Ollama",
-        "FAISS",
-        "Unstructured.io"
+        "SVG",
+        "Dijkstra"
       ],
-      "repo": "https://github.com/AkshunChauhan/Sentinel-RAG",
-      "source": "https://github.com/AkshunChauhan/Sentinel-RAG",
-      "sourceLabel": "Explore the repository",
-      "challenge": "Working with private documents raises a practical question: can useful retrieval and inference stay on local infrastructure? Sentinel RAG explores that workflow.",
-      "approach": "A FastAPI backend and React/TypeScript interface connect document processing with local retrieval. Unstructured.io extracts content from PDFs and DOCX files; Ollama and FAISS support local inference and retrieval workflows. Metadata and structured processing make documents easier to search and analyze.",
-      "outcome": "A public Python project exploring local document intelligence and privacy-focused inference. Its architecture brings document preparation and local language models into one retrieval workflow. The repository documents the setup and current implementation.",
+      "summary": "Find the room, then find the route. Interactive campus maps with shortest-path navigation between classrooms and facilities.",
+      "challenge": "Finding a classroom in an unfamiliar building is a spatial problem. The interface needs to connect a room name with a route people can follow.",
+      "approach": "A React and TypeScript interface combines an interactive SVG map, points of interest, and route details. A Dijkstra implementation with a priority queue computes paths through the campus graph. Local JSON data supports map exploration. The repository retains an OpenIndoorMaps/PathPal sample interface and map; the capture shows that example rather than a surveyed campus deployment.",
+      "outcome": "A campus-navigation prototype with implemented pathfinding and map interaction. Earlier BLE experiments are distinct from the route-planning interface shown here; deployed indoor positioning is not claimed.",
       "facts": [
-        "Local document retrieval",
-        "Offline inference",
-        "Public Python codebase"
+        "Interactive SVG campus map",
+        "Dijkstra shortest paths",
+        "Room search & route details"
       ],
-      "featured": false
+      "repo": "",
+      "source": "",
+      "sourceLabel": "Private project · case study",
+      "visibility": "private",
+      "year": "2024",
+      "role": "Project development",
+      "featured": true,
+      "image": "images/projects/roomquest-local.jpg",
+      "imageAlt": "RoomQuest repository running its PathPal indoor map example",
+      "imageCaption": "Original repository demo · sample indoor map"
     },
     {
       "slug": "qnext",
@@ -245,34 +225,217 @@
       "imageCaption": "Live project capture · October 2026"
     },
     {
-      "slug": "trace",
-      "name": "TRACE",
-      "eyebrow": "SEMANTIC SEARCH / EDUCATION",
+      "slug": "restaurant-voice-agent",
+      "name": "AI Calling Agent",
+      "eyebrow": "VOICE AI · REAL-TIME WORKFLOWS",
       "category": "ai",
-      "year": "2024",
+      "year": "2026",
+      "summary": "From a phone call to a kitchen workflow. A restaurant voice agent with menu-aware conversations, tool calling, and a live kitchen dashboard.",
+      "tags": [
+        "Node.js",
+        "Twilio",
+        "Socket.io",
+        "LLM tools"
+      ],
+      "repo": "https://github.com/AkshunChauhan/AI-CALLING-AGENT",
+      "challenge": "A restaurant phone call can involve menus, orders, reservations, payment, and a handoff to a person. The interesting problem is connecting a natural conversation to those concrete workflows.",
+      "approach": "Twilio webhooks manage speech and call state. An LLM tool-calling loop connects the conversation to restaurant operations, while Socket.io sends order updates to the kitchen. Each call is associated with a restaurant tenant.",
+      "outcome": "A public working prototype connecting voice, restaurant operations, and real-time interfaces. The source includes call transcripts, human handoff, and order dispatch flows; the repository documents setup and its current state.",
+      "facts": [
+        "Voice-to-workflow prototype",
+        "Live kitchen updates",
+        "Restaurant-aware sessions"
+      ],
       "featured": true,
-      "image": "images/projects/TRACE.png",
-      "imageAlt": "TRACE desktop application comparing course learning outcomes",
-      "imageCaption": "Original desktop application screenshot",
+      "role": "Independent project development",
+      "sourceLabel": "Explore the public source",
+      "source": "https://github.com/AkshunChauhan/AI-CALLING-AGENT",
+      "image": "images/projects/restaurant-voice-agent-local.jpg",
+      "imageAlt": "Original restaurant voice agent kitchen display with new, preparing and ready order columns",
+      "imageCaption": "Original kitchen frontend · backend disconnected"
+    },
+    {
+      "slug": "agency-challenge",
+      "name": "Agency Challenge · Follow the Money",
+      "eyebrow": "PUBLIC DATA · NETWORK ANALYSIS",
+      "category": "research",
+      "tags": [
+        "Node.js",
+        "PostgreSQL",
+        "D3.js"
+      ],
+      "summary": "Follow the connections behind the numbers. A funding-network explorer for investigating circular flows in Canadian charity data.",
+      "challenge": "Financial tables can hide relationships across organizations. How can an investigator explore funding loops, trace the source data, and decide what needs closer review?",
+      "approach": "A SQL-backed Node service surfaces funding loops from CRA T3010 data. The original interface uses D3 network graphs alongside organization details, spending context, and generated investigation memos. Related challenge repositories explore a shared analytics interface and investigation backend.",
+      "outcome": "An investigation-support prototype that connects database queries, graph visualization, and written analysis. A loop is a lead to examine, not proof of wrongdoing; source context and human review remain essential.",
+      "facts": [
+        "SQL-backed funding networks",
+        "D3 relationship exploration",
+        "Source-linked investigation workflow"
+      ],
+      "repo": "",
+      "source": "",
+      "sourceLabel": "Private project · case study",
+      "visibility": "private",
+      "year": "2026",
+      "role": "Project development",
+      "featured": true,
+      "image": "images/projects/agency-challenge-local.jpg",
+      "imageAlt": "Original Follow the Money investigation interface awaiting its database",
+      "imageCaption": "Original frontend · database disconnected"
+    },
+    {
+      "slug": "document-intelligence",
+      "name": "Document Intelligence",
+      "eyebrow": "DOCUMENT PROCESSING · STRUCTURED EXTRACTION",
+      "category": "ai",
       "tags": [
         "Python",
-        "PyQt5",
-        "NLP"
+        "FastAPI",
+        "Pydantic",
+        "OCR"
       ],
-      "repo": "https://github.com/AkshunChauhan/TRACE",
-      "demo": "",
-      "role": "Developer · RDP capstone",
-      "summary": "Comparing course learning outcomes by meaning, helping educators see what changed across a curriculum.",
+      "summary": "From scanned pages to structured information. A document-analysis API with provider adapters, page processing, and validated JSON outputs.",
+      "challenge": "Scanned documents mix layouts, handwriting, dates, and financial values. Downstream software needs structured fields rather than another unsearchable PDF.",
+      "approach": "The FastAPI vision-analysis variant accepts PDFs, prepares pages, calls a configured model provider, and validates a structured response. The repository also explores Azure OCR/classification and offline extraction variants; those paths have different setup and processing requirements.",
+      "outcome": "An implemented document-processing project with upload validation and a documented API contract. The current API variant is designed to process without retaining submitted documents; extraction accuracy still needs evaluation on representative material.",
       "facts": [
-        "Sentence Transformer semantic similarity",
-        "Excel input and exportable comparisons",
-        "Multithreaded PyQt5 desktop interface"
+        "PDF-to-JSON analysis",
+        "Pluggable vision providers",
+        "Schema-validated responses"
       ],
-      "challenge": "Curriculum reviews involve comparing learning outcomes across many spreadsheets. Keyword matching misses changes in wording that preserve the same meaning.",
-      "approach": "Built a Python desktop workflow using the all-MiniLM-L6-v2 Sentence Transformer model, adjustable similarity thresholds, and background processing so large comparisons do not freeze the interface.",
-      "outcome": "A capstone application that lets reviewers select Excel files, inspect semantic matches, and export comparison reports. Similarity scores support human review rather than deciding course equivalency.",
-      "source": "https://github.com/AkshunChauhan/TRACE",
-      "sourceLabel": "Read the project documentation"
+      "repo": "",
+      "source": "",
+      "sourceLabel": "Private project · case study",
+      "visibility": "private",
+      "year": "2026",
+      "role": "Project development",
+      "featured": true,
+      "image": "images/projects/document-intelligence-local.jpg",
+      "imageAlt": "Running Document Analysis API with its PDF upload endpoint expanded",
+      "imageCaption": "Running API · original Swagger interface"
+    },
+    {
+      "slug": "excelbot",
+      "name": "excelbot",
+      "eyebrow": "LOCAL DESKTOP AI · SPREADSHEET AUTOMATION",
+      "category": "ai",
+      "tags": [
+        "Electron",
+        "React",
+        "FastAPI",
+        "Ollama",
+        "openpyxl"
+      ],
+      "summary": "Tell your spreadsheets what comes next. A local desktop assistant that plans workbook changes and asks for approval before running them.",
+      "challenge": "Spreadsheet requests are often expressed in everyday language, while reliable workbook changes need explicit, repeatable operations.",
+      "approach": "An Electron and React interface connects to FastAPI and a local Ollama planner. A registry of Python tools performs workbook operations with openpyxl; SQLite keeps conversation history. The interface separates a proposed plan from the user’s decision to execute it.",
+      "outcome": "A local assistant with implemented merge, comparison, formatting, formula, and validation tools. Focused workbook tests exist in the source. The portfolio preview shows the original interface; it does not imply every model or arbitrary automation path has been validated.",
+      "facts": [
+        "Plan, review, then execute",
+        "Deterministic workbook tools",
+        "Local model & conversation storage"
+      ],
+      "repo": "",
+      "source": "",
+      "sourceLabel": "Private project · case study",
+      "visibility": "private",
+      "year": "2026",
+      "role": "Project development",
+      "featured": true,
+      "image": "images/projects/excelbot-local.jpg",
+      "imageAlt": "Original Excelbot React desktop frontend with workbook attachment controls",
+      "imageCaption": "Original frontend · local preview"
+    },
+    {
+      "slug": "conf-rag",
+      "name": "ConfRAG",
+      "eyebrow": "LOCAL AI · KNOWLEDGE SYSTEMS",
+      "category": "ai",
+      "year": "2026",
+      "summary": "Turn a folder of conference notes into a conversation. Local AI, conference-scoped retrieval, and answers linked to their source notes.",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "Ollama",
+        "ChromaDB"
+      ],
+      "repo": "https://github.com/AkshunChauhan/Conf-RAG",
+      "challenge": "Useful ideas disappear inside meeting notes and conference documents. How can you ask questions across that material while keeping inference on your own machine?",
+      "approach": "A FastAPI application organizes notes by conference. Documents are split into overlapping chunks, embedded with Ollama, and stored in ChromaDB. Questions retrieve only the selected conference’s notes, and the model is prompted to cite its sources.",
+      "outcome": "A runnable local knowledge tool with document uploads, note retrieval, and shareable conference views. It explores the complete path from an uploaded document to a grounded answer.",
+      "facts": [
+        "Conference-scoped retrieval",
+        "Local model inference",
+        "Source-linked answers"
+      ],
+      "featured": false,
+      "role": "Independent project development",
+      "sourceLabel": "Explore the public source",
+      "source": "https://github.com/AkshunChauhan/Conf-RAG",
+      "image": "images/projects/confrag-interface.jpg",
+      "imageAlt": "ConfRAG original interface",
+      "imageCaption": "Original frontend · local interface preview"
+    },
+    {
+      "slug": "sentinel-rag",
+      "name": "Sentinel RAG",
+      "eyebrow": "LOCAL AI · DOCUMENT INTELLIGENCE",
+      "category": "ai",
+      "year": "2026",
+      "summary": "Document intelligence with privacy in mind. Local retrieval and offline inference for working with your own information.",
+      "role": "Open-source project",
+      "tags": [
+        "FastAPI",
+        "React",
+        "TypeScript",
+        "Ollama",
+        "FAISS",
+        "Unstructured.io"
+      ],
+      "repo": "https://github.com/AkshunChauhan/Sentinel-RAG",
+      "source": "https://github.com/AkshunChauhan/Sentinel-RAG",
+      "sourceLabel": "Explore the repository",
+      "challenge": "Working with private documents raises a practical question: can useful retrieval and inference stay on local infrastructure? Sentinel RAG explores that workflow.",
+      "approach": "A FastAPI backend and React/TypeScript interface connect document processing with local retrieval. Unstructured.io extracts content from PDFs and DOCX files; Ollama and FAISS support local inference and retrieval workflows. Metadata and structured processing make documents easier to search and analyze.",
+      "outcome": "A public Python project exploring local document intelligence and privacy-focused inference. Its architecture brings document preparation and local language models into one retrieval workflow. The repository documents the setup and current implementation.",
+      "facts": [
+        "Local document retrieval",
+        "Offline inference",
+        "Public Python codebase"
+      ],
+      "featured": false
+    },
+    {
+      "slug": "energy-innovation-link",
+      "name": "Energy Innovation Link",
+      "eyebrow": "ENERGY RESEARCH · DATA INFRASTRUCTURE",
+      "category": "research",
+      "year": "2024–25",
+      "summary": "From sensor to insight. A desktop application that makes cloud-hosted research data accessible without writing SQL.",
+      "role": "Application development · Data integration",
+      "tags": [
+        "Electron",
+        "TypeScript",
+        "PostgreSQL",
+        "Azure"
+      ],
+      "repo": "",
+      "source": "",
+      "sourceLabel": "Private project · case study",
+      "image": "images/projects/EIL.png",
+      "imageAlt": "Energy Innovation Link desktop application interface",
+      "challenge": "Research data is valuable only when people can access it. Energy researchers needed a simpler way to retrieve IoT measurements stored in the cloud without depending on SQL expertise.",
+      "approach": "I developed a desktop application with Electron, React, Vite, and TypeScript, connecting a PostgreSQL data layer with Azure infrastructure. The interface lets researchers select and download data for their work.",
+      "outcome": "Designed for internal use at Red Deer Polytechnic, Energy Innovation Link connects software development with applied energy research. It gives researchers an interface for retrieving cloud-hosted measurements and is referenced in a colleague’s professional recommendation.",
+      "facts": [
+        "Desktop application",
+        "IoT-to-cloud data access",
+        "Built for applied research"
+      ],
+      "featured": false,
+      "imageCaption": "Original application screenshot",
+      "visibility": "private"
     }
   ],
   "ventures": [
@@ -392,26 +555,34 @@
       "quote": "Akshun Chauhan is an exceptionally skilled professional with expertise in database management, web development, and data analysis. Having collaborated with him on multiple projects at Red Deer Polytechnic, I was consistently impressed by his contributions, particularly in data analysis for evaluating various solar configurations and his development of the 'Energy Innovation Link' app, which greatly enhanced access to data for applied research. His technical proficiency, innovative mindset, and dedication make him a valuable asset to any organization seeking top-tier talent.",
       "summary": "On our work in solar data analysis and making research data more accessible through Energy Innovation Link.",
       "url": "https://www.linkedin.com/in/akshunchauhan/details/recommendations/",
-      "image": "",
+      "image": "images/people/shehan-provided.png",
       "quoteSource": "https://github.com/AkshunChauhan/Portfolio-/blob/main/data/index.ts",
-      "imageStatus": "current-photo-unverified",
+      "imageStatus": "owner-supplied-link",
       "sourceCheckedAt": "2026-10-21",
       "currentContext": "Electrical EIT · CF Power Ltd.",
       "profileURL": "https://ca.linkedin.com/in/shehan-herathge",
-      "profileCheckedAt": "2026-10-21"
+      "profileCheckedAt": "2026-10-21",
+      "imageSource": "https://media.licdn.com/dms/image/v2/D5603AQGz82hMXhuN3w/profile-displayphoto-crop_800_800/B56Zwmd9IuJcAI-/0/1770171914468?e=1794441600&v=beta&t=YSvPzjcCVPvGeXD2nz2EMLIr_vMYh6d5OMK_Een0Y6E",
+      "imageCheckedAt": "2026-10-21",
+      "imageProvenance": "Owner supplied this LinkedIn photo URL; downloaded successfully. Current LinkedIn profile photo status was not independently verified."
     },
     {
-      "name": "Yash Kumar",
-      "initials": "YK",
-      "context": "Professional recommendation",
+      "name": "Yash Rajput",
+      "initials": "YR",
+      "context": "Assistant Director · EY",
       "quote": "Akshun Chauhan is a talented Data Analyst with exceptional skills in IoT, cloud systems, and Power BI. His work in solar metrics and renewable energy showcases his passion for impactful innovation. Dedicated, skilled, and forward-thinking, Akshun is a true asset to any team.",
       "summary": "On combining data analysis, renewable energy, and a practical approach to innovation.",
       "url": "https://www.linkedin.com/in/akshunchauhan/details/recommendations/",
-      "image": "",
+      "image": "images/people/yash.jpg",
       "quoteSource": "https://github.com/AkshunChauhan/Portfolio-/blob/main/data/index.ts",
-      "imageStatus": "current-photo-unverified",
+      "imageStatus": "owner-supplied-link",
       "sourceCheckedAt": "2026-10-21",
-      "profileStatus": "exact-profile-needed"
+      "profileStatus": "owner-confirmed",
+      "currentContext": "Assistant Director · EY",
+      "contextSource": "Owner correction, 2026-10-21",
+      "imageSource": "https://media.licdn.com/dms/image/v2/C4D03AQGO0Xc_xjL9Uw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1646170108107?e=1794441600&v=beta&t=kiEw712e-Ws7EbBQmoyI48v1Hzri9ExOmScsCrd4AU8",
+      "imageCheckedAt": "2026-10-21",
+      "imageProvenance": "Owner supplied this LinkedIn photo URL; downloaded successfully. Current LinkedIn profile photo status was not independently verified."
     }
   ],
   "press": [
@@ -886,19 +1057,11 @@
   ],
   "repositorySelection": [
     {
-      "name": "Conf-RAG",
-      "url": "https://github.com/AkshunChauhan/Conf-RAG",
-      "description": "Turn a folder of conference notes into a conversation. Local AI, conference-scoped retrieval, and answers linked to their source notes.",
-      "casePath": "projects/conf-rag/",
-      "category": "ai",
-      "year": "2026"
-    },
-    {
-      "name": "AI-CALLING-AGENT",
-      "url": "https://github.com/AkshunChauhan/AI-CALLING-AGENT",
-      "description": "From a phone call to a kitchen workflow. A restaurant voice agent with menu-aware conversations, tool calling, and a live kitchen dashboard.",
-      "casePath": "projects/restaurant-voice-agent/",
-      "category": "ai",
+      "name": "FocusReport",
+      "url": "https://github.com/AkshunChauhan/FocusReport",
+      "description": "From a work session to a readable report. A native macOS app with session controls, permission checks, and PDF generation.",
+      "casePath": "projects/focusreport/",
+      "category": "web",
       "year": "2026"
     },
     {
@@ -910,36 +1073,12 @@
       "year": "2026"
     },
     {
-      "name": "asteroid",
+      "name": "Asteroid",
       "url": "https://github.com/AkshunChauhan/asteroid",
       "description": "Making a planetary threat understandable. An interactive asteroid impact simulator with a 3D Earth and AI-assisted mitigation planning.",
       "casePath": "projects/asteroid/",
       "category": "research",
       "year": "2025"
-    },
-    {
-      "name": "Energy-Innovation-Link",
-      "url": "https://github.com/eicdevs/Energy-Innovation-Link",
-      "description": "From sensor to insight. A desktop application that makes cloud-hosted research data accessible without writing SQL.",
-      "casePath": "projects/energy-innovation-link/",
-      "category": "research",
-      "year": "2024–25"
-    },
-    {
-      "name": "Sentinel-RAG",
-      "url": "https://github.com/AkshunChauhan/Sentinel-RAG",
-      "description": "Document intelligence with privacy in mind. Local retrieval and offline inference for working with your own information.",
-      "casePath": "projects/sentinel-rag/",
-      "category": "ai",
-      "year": "2026"
-    },
-    {
-      "name": "Qnext",
-      "url": "https://github.com/AkshunChauhan/Qnext",
-      "description": "Bring the room into the conversation. QR access, live Q&A, and networking for presenters and their audiences.",
-      "casePath": "projects/qnext/",
-      "category": "web",
-      "year": "2026"
     },
     {
       "name": "TRACE",
@@ -950,34 +1089,95 @@
       "year": "2024"
     },
     {
-      "name": "Invoicing-system",
-      "url": "https://github.com/AkshunChauhan/Invoicing-system",
-      "description": "Invoice creation, payment workflow, and customer email automation.",
+      "name": "Qnext",
+      "url": "https://github.com/AkshunChauhan/Qnext",
+      "description": "Bring the room into the conversation. QR access, live Q&A, and networking for presenters and their audiences.",
+      "casePath": "projects/qnext/",
+      "category": "web",
+      "year": "2026"
+    },
+    {
+      "name": "AI Calling Agent",
+      "url": "https://github.com/AkshunChauhan/AI-CALLING-AGENT",
+      "description": "From a phone call to a kitchen workflow. A restaurant voice agent with menu-aware conversations, tool calling, and a live kitchen dashboard.",
+      "casePath": "projects/restaurant-voice-agent/",
+      "category": "ai",
+      "year": "2026"
+    },
+    {
+      "name": "ConfRAG",
+      "url": "https://github.com/AkshunChauhan/Conf-RAG",
+      "description": "Turn a folder of conference notes into a conversation. Local AI, conference-scoped retrieval, and answers linked to their source notes.",
+      "casePath": "projects/conf-rag/",
+      "category": "ai",
+      "year": "2026"
+    },
+    {
+      "name": "Sentinel RAG",
+      "url": "https://github.com/AkshunChauhan/Sentinel-RAG",
+      "description": "Document intelligence with privacy in mind. Local retrieval and offline inference for working with your own information.",
+      "casePath": "projects/sentinel-rag/",
+      "category": "ai",
+      "year": "2026"
+    },
+    {
+      "name": "Grant Tracking Platform",
+      "url": "https://github.com/AkshunChauhan/TVSR",
+      "description": "Collaborative grant boards, progress timelines, and application tracking with Firebase.",
       "category": "web"
     },
     {
-      "name": "Netflix-data-insights",
+      "name": "Invoicing System",
+      "url": "https://github.com/AkshunChauhan/Invoicing-system",
+      "description": "Customer records, invoice workflows, authentication, and customer email automation.",
+      "category": "web"
+    },
+    {
+      "name": "Netflix Data Insights",
       "url": "https://github.com/AkshunChauhan/Netflix-data-insights",
-      "description": "Interactive exploration of a public Netflix catalogue dataset.",
+      "description": "A Django and Pandas data pipeline with interactive catalogue visualizations in React.",
       "category": "ai"
     },
     {
       "name": "LocalGuide",
       "url": "https://github.com/AkshunChauhan/LocalGuide",
-      "description": "A web platform built for a startup serving international students.",
+      "description": "A React and Firebase platform built around the needs of international students.",
       "category": "web"
     },
     {
       "name": "CampusConnect",
       "url": "https://github.com/AkshunChauhan/CampusConnect",
-      "description": "A campus-specific social platform for student collaboration.",
+      "description": "A Spring Boot and React student platform with user, post, and collaboration flows.",
       "category": "web"
     },
     {
-      "name": "Apna_Market_2.0",
+      "name": "Apna Market",
       "url": "https://github.com/AkshunChauhan/Apna_Market_2.0",
-      "description": "A peer-to-peer marketplace for students to exchange resources.",
+      "description": "A student marketplace with listings, authentication, and persistent data.",
+      "category": "web"
+    },
+    {
+      "name": "Task & List Platform",
+      "url": "https://github.com/AkshunChauhan/site-testing",
+      "description": "Spring Boot and React application for organizing tasks and lists.",
       "category": "web"
     }
-  ]
+  ],
+  "featuredProjectPolicy": {
+    "slugs": [
+      "agrag",
+      "focusreport",
+      "cashvault",
+      "asteroid",
+      "trace",
+      "roomquest",
+      "qnext",
+      "restaurant-voice-agent",
+      "agency-challenge",
+      "document-intelligence",
+      "excelbot"
+    ],
+    "pageSize": 6,
+    "note": "Only these owner-selected projects may appear as selected work. INDine stays in ventures, with no company source link."
+  }
 }

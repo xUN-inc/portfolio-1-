@@ -132,7 +132,7 @@
             <a class="button button-primary" href="#work"
               >Explore my work <span>↘</span></a
             ><button class="text-button" data-open-chat>
-              Ask about me <span class="sparkle">✳</span>
+              Ask about me <span class="sparkle" aria-hidden="true">↗</span>
             </button>
           </div>
           <div class="hero-current">
@@ -177,14 +177,15 @@
             </h2>
           </div>
           <p>
-            Research tools, local AI, and connected platforms.<br />A closer
-            look at the software behind the work.
+            From campus maps to planetary defence.<br />Local AI, native apps,
+            and the tools that connect them.
           </p>
         </div>
         <p class="mobile-work-hint">
           {{FEATURED_COUNT}} SELECTED PROJECTS <span>Swipe to explore ↔</span>
         </p>
-        <div class="project-grid">{{PROJECTS}}</div>
+        <div class="project-grid" id="selected-projects">{{PROJECTS}}</div>
+        {{SELECTED_CONTROLS}}
         <a class="text-link work-all" href="work/"
           >More projects & research ↗</a
         >
@@ -390,19 +391,31 @@
         </div>
         <div class="recognition-strip">
           <a href="docs/ak.pdf" target="_blank" rel="noopener noreferrer"
-            ><span>✳</span
+            ><span>✓</span
             ><strong
               >All India Science Competition<small
                 >Winner · Model making, 2019</small
               ></strong
             >↗</a
           ><a href="news/nasa-our-journey/"
-            ><span>✳</span
+            ><span class="recognition-logo"
+              ><img
+                src="images/brands/space-apps.png"
+                alt="NASA Space Apps Challenge"
+                width="96"
+                height="42"
+                loading="lazy" /></span
             ><strong
               >NASA Space Apps<small>1st place · Edmonton, 2025</small></strong
             >↗</a
-          ><a href="about/"
-            ><span>↗</span
+          ><a href="news/united-way-magazine/"
+            ><span class="recognition-logo"
+              ><img
+                src="images/brands/united-way.png"
+                alt="United Way Central Alberta"
+                width="96"
+                height="42"
+                loading="lazy" /></span
             ><strong
               >Top 40 Under 40<small>Central Alberta · 2025</small></strong
             >↗</a
@@ -504,7 +517,7 @@
       </section>
 
       <section class="ask-section container" aria-labelledby="ask-heading">
-        <div class="ask-symbol" aria-hidden="true">✳</div>
+        <div class="ask-symbol" aria-hidden="true">ak</div>
         <div>
           <p class="eyebrow">A DIFFERENT WAY TO EXPLORE</p>
           <h2 id="ask-heading">Curious about something?</h2>
@@ -536,18 +549,18 @@
                 id="postcard-handle"
                 aria-label="Move the postcard. Drag or use arrow keys; press Escape to reset."
               >
-                <span>✳</span> A LITTLE HELLO <span>⠿</span></button
+                <span>AK</span> A LITTLE HELLO <span>⠿</span></button
               ><span class="postcard-stamp" aria-hidden="true">AK<br />↗</span>
               <p>Good ideas start<br />with a conversation.</p>
-              <a href="mailto:akshunchauhan099@gmail.com">Send me a note ↗</a>
+              <a href="mailto:ak@xuninnovation.ca">Send me a note ↗</a>
             </div>
             <small>Pick up the postcard. Make a little move.</small>
           </div>
         </div>
         <div class="contact-bottom">
           <div>
-            <a class="contact-email" href="mailto:akshunchauhan099@gmail.com"
-              >akshunchauhan099@gmail.com</a
+            <a class="contact-email" href="mailto:ak@xuninnovation.ca"
+              >ak@xuninnovation.ca</a
             ><button
               id="copy-email"
               class="copy-button"
@@ -602,7 +615,8 @@
       aria-controls="chat-panel"
       aria-expanded="false"
     >
-      <span>✳</span> Ask AK’s guide <span class="chat-launcher-dot"></span>
+      <span class="chat-monogram" aria-hidden="true">AK</span> Ask AK’s guide
+      <span class="chat-launcher-dot"></span>
     </button>
     <section
       class="chat-panel"
@@ -613,7 +627,7 @@
       hidden
     >
       <header class="chat-header">
-        <span class="chat-avatar">✳</span>
+        <span class="chat-avatar" aria-hidden="true">AK</span>
         <div>
           <h2 id="chat-title">AK’s portfolio guide</h2>
           <span>Grounded in the work. Linked to the source.</span>
@@ -636,16 +650,17 @@
         <div class="chat-message assistant">
           <span class="chat-message-label">PORTFOLIO GUIDE</span>
           <p>
-            Hi, I’m here to help you explore Akshun’s work. Ask about a project,
-            his research, Xun Innovation, or his journey.
+            Hi, I’m AK’s portfolio guide. Explore my projects, career,
+            companies, presentations, awards, and recommendations. Compare two
+            projects or ask a follow-up about the technology or my contribution.
           </p>
         </div>
       </div>
       <div class="chat-prompts" id="chat-prompts">
         <button data-question="What are your projects?">
           Explore the projects ↗</button
-        ><button data-question="Tell me about your NASA achievement">
-          The NASA story ↗</button
+        ><button data-question="What roles have you held at RDP?">
+          My career at RDP ↗</button
         ><button data-question="What is Xun Innovation?">
           Xun Innovation ↗
         </button>
@@ -661,7 +676,7 @@
         /><button type="submit" aria-label="Send question">↑</button>
       </form>
       <p class="chat-privacy">
-        Source-based guide · Runs in your browser · No chat data sent
+        Answers from this portfolio · Your questions stay in this browser
       </p>
     </section>
     <script id="portfolio-data" type="application/json">

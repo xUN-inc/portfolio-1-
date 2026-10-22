@@ -5,6 +5,10 @@ import {
   educationSection,
 } from "../lib/profile-story.mjs";
 import { projectTechnologies } from "../lib/technology-icons.mjs";
+import {
+  selectedProjects,
+  selectedWorkControls,
+} from "../lib/selected-work.mjs";
 import { writeFile, mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import {
@@ -13,6 +17,7 @@ import {
   repoRow,
   filterRepos,
   curatedRepos,
+  projectCard,
   dateLabel,
 } from "../lib/portfolio.mjs";
 import {
@@ -74,11 +79,17 @@ export async function buildDetailPages({ root, profile, repos, siteURL }) {
     );
   }
   const original = curatedRepos(profile, repos);
+  const selected = selectedProjects(profile);
   await page(
     "work/",
     "Project library",
     "Explore Akshun Chauhan’s live GitHub project library, filtered by research, AI, data, and software.",
-    `<div class="detail-intro"><p class="eyebrow">THE WORKBENCH / LIVE FROM GITHUB</p><h1>A few ideas.<br><span>A lot of building.</span></h1><p>A curated selection of research tools, software platforms, and substantial personal projects. Public source code and approved private project summaries, six at a time.</p></div><section class="github-section directory-library" aria-labelledby="directory-heading"><h2 id="directory-heading" class="sr-only">Repository library</h2><div class="github-toolbar"><div class="filter-tabs" role="group" aria-label="Filter repositories">${[
+    `<div class="detail-intro"><p class="eyebrow">THE WORKBENCH / SELECTED PROJECTS</p><h1>A few ideas.<br><span>A lot of building.</span></h1><p>Native apps, campus navigation, applied research, and local AI. Eleven selected projects, followed by a broader library of substantial work. Private projects open case studies; public projects also link to source.</p></div><section class="directory-selected" aria-labelledby="selected-heading"><h2 id="selected-heading">A closer look.</h2><div class="project-grid" id="selected-projects">${selected
+      .slice(0, 6)
+      .map((p, i) => projectCard(p, i, "../"))
+      .join(
+        "",
+      )}</div>${selectedWorkControls(selected.length)}</section><section class="github-section directory-library" aria-labelledby="directory-heading"><h2 id="directory-heading">The rest of the workbench.</h2><div class="github-toolbar"><div class="filter-tabs" role="group" aria-label="Filter repositories">${[
       ["all", "All work"],
       ["ai", "AI & data"],
       ["web", "Web & platforms"],

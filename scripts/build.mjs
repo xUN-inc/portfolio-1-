@@ -1,4 +1,8 @@
 import { themeHead, themeButton } from "../lib/theme-chrome.mjs";
+import {
+  selectedProjects,
+  selectedWorkControls,
+} from "../lib/selected-work.mjs";
 import { storyMetrics, presentationsSection } from "../lib/profile-story.mjs";
 import { projectTechnologies } from "../lib/technology-icons.mjs";
 import { readFile, writeFile, mkdir, cp, rm } from "node:fs/promises";
@@ -100,14 +104,12 @@ const sections = {
   SCHEMA: jsonForHTML(schema),
   ARROW: arrow,
   GITHUB_ICON: githubIcon,
-  PROJECTS: profile.projects
-    .filter((p) => p.featured)
+  PROJECTS: selectedProjects(profile)
     .slice(0, 6)
-    .map(projectCard)
+    .map((p, i) => projectCard(p, i))
     .join("\n"),
-  FEATURED_COUNT: String(
-    profile.projects.filter((p) => p.featured).length,
-  ).padStart(2, "0"),
+  FEATURED_COUNT: String(selectedProjects(profile).length).padStart(2, "0"),
+  SELECTED_CONTROLS: selectedWorkControls(selectedProjects(profile).length),
   STORY_METRICS: storyMetrics(profile),
   PRESENTATIONS: presentationsSection(profile),
   CAREER: careerSection(profile.career),

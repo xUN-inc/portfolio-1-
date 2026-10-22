@@ -1,4 +1,5 @@
 import { programmingYears } from "./lib/profile-story.mjs";
+import { mountSelectedWork } from "./lib/selected-work.mjs";
 import { mountExperience } from "./lib/motion.mjs";
 import { mountRepositoryLibrary } from "./lib/repository-library.mjs";
 import { newsCard } from "./lib/experience.mjs";
@@ -13,6 +14,7 @@ document
       (el.textContent = programmingYears(Number(el.dataset.programmingYears))),
   );
 mountExperience(profile, base);
+mountSelectedWork(profile, base);
 mountRepositoryLibrary(profile, repos, () => {}, base);
 const archive = document.querySelector("#news-archive");
 if (archive) {

@@ -937,3 +937,136 @@
 .recommendation-dialog .quote-person strong {
   display: none;
 }
+.selected-work-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 1.5rem 0 0;
+  border-top: 1px solid var(--line, #d8d7cd);
+  padding-top: 1.2rem;
+}
+.selected-work-controls > p {
+  font-size: 0.82rem;
+  color: var(--text-muted, #777);
+  margin: 0;
+}
+.directory-selected {
+  margin: 3rem 0 5rem;
+}
+.directory-selected h2 {
+  margin-bottom: 1.5rem;
+}
+#selected-projects {
+  scroll-margin-top: 100px;
+}
+.project-image.cashvault {
+  background: #e2e0da;
+}
+.project-image.cashvault > img {
+  object-fit: contain;
+}
+.case-image:has(img[src*="cashvault-local"]) {
+  background: #e2e0da;
+}
+.case-image img[src*="cashvault-local"] {
+  object-fit: contain;
+  max-height: 680px;
+}
+@media (max-width: 680px) {
+  .selected-work-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .selected-work-controls .repo-pagination {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+.story-metrics {
+  grid-template-columns: 1fr 1.1fr 1.4fr 1.35fr;
+  gap: 24px;
+}
+.story-metrics > div {
+  gap: 12px;
+}
+.story-metrics .metric-award strong {
+  font-size: 28px;
+  letter-spacing: -1px;
+}
+.recognition-strip > a > .recognition-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 96px;
+  width: 96px;
+  height: 58px;
+  background: #fff;
+  padding: 8px;
+  border-radius: 4px;
+}
+.recognition-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@media (max-width: 1000px) and (min-width: 681px) {
+  .story-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+@media (max-width: 680px) {
+  .story-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 17px;
+  }
+  .story-metrics > div:last-child {
+    grid-column: auto;
+    display: block;
+    border: 0;
+    padding-top: 0;
+  }
+  .story-metrics > div.metric-award {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+  }
+  .story-metrics .metric-award strong,
+  .story-metrics > div:last-child strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 26px;
+  }
+  .recognition-strip > a > .recognition-logo {
+    flex-basis: 80px;
+    width: 80px;
+    height: 50px;
+  }
+}
+.chat-launcher > .chat-monogram,
+.chat-avatar {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+.ask-symbol {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 64px;
+  font-weight: 500;
+  letter-spacing: -5px;
+}
+.chat-followups {
+  padding: 12px 0 0;
+  margin-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.chat-message .chat-followups button {
+  font-size: 10px;
+}
+.ask-symbol,
+.chat-monogram,
+.chat-avatar {
+  animation: none;
+}

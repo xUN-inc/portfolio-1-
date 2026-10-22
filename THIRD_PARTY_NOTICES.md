@@ -34,8 +34,16 @@ FastAPI, Flutter, Dart, SQLite, Django, Ollama, and Expo SVG marks are from [Sim
 
 ### Official marks and original interface captures
 
+NASA Space Apps Challenge logo: the official [Space Apps brand assets](https://www.spaceappschallenge.org/brand/) (`Space_Apps_Logo_Color_and_Black.width-580.png`). United Way Central Alberta logo: the official [United Way Central Alberta website](https://caunitedway.ca/) (`wp-content/uploads/2022/09/United-Way-logo-web.png`). These identify the events and organizations associated with the owner's awards; the NASA Space Apps achievement is the 2025 Edmonton local-event first place.
+
 Red Deer Polytechnic logo: https://rdpolytech.ca/themes/custom/rdp_glider/logo.svg. Xun Innovation logo: https://xuninnovation.ca/logo.png. INDine.ca logo: https://indine.ca/logo.png. These are official company marks, used to identify the organizations.
 
 The Qnext, Asteroid, Xun Innovation, and INDine captures show the actual public sites, captured October 2026. ConfRAG is the original frontend from AkshunChauhan/Conf-RAG, shown locally without its API backend; the caption identifies the interface preview. EIL and TRACE application screenshots are the owner's original assets. No AI-generated interface images are used.
 
-The complete recommendations and Yash Kumar / Shehan Herathge headshots are reproduced from the owner's AkshunChauhan/Portfolio- repository (`data/index.ts`, `public/yash.jpg`, `public/shen.jpeg`). The portfolio links to the owner's LinkedIn recommendations.
+Additional October 2026 captures use the owner's selected repositories: excelbot's original React frontend, the running Document Analysis API's Swagger interface, FocusReport's compiled native SwiftUI idle dashboard, and CashVault's original Flutter transaction screen. CashVault's local screenshot checkout restores the Flutter web bootstrap and generates its declared Hive adapters; its screen designs are unchanged. The Agency Challenge and AI Calling Agent images show original frontend interfaces without their database/backend connections, as labelled in the captions. No generated transactions, calls, investigation findings, or model responses are shown.
+
+AgRag's image is a browser-rendered, verbatim transcript of an actual local CLI session (`interactive`, `/status`, `/exit`), not a native terminal screenshot. It does not demonstrate inference performance. AgRag builds on llama-cpp-agent; upstream attribution remains applicable.
+
+RoomQuest's capture shows the original repository's OpenIndoorMaps/PathPal sample interface and indoor map, including retained sample brands. The upstream project is [OpenIndoorMaps](https://github.com/openindoormap/openindoormaps). The capture is an example map, not evidence of a surveyed or deployed campus positioning system. The repository's source and map provenance should be credited when discussing individual contributions.
+
+The complete recommendation text is reproduced from the owner's AkshunChauhan/Portfolio- repository (`data/index.ts`). The owner corrected the existing Yash card to Yash Rajput, Assistant Director at EY, without changing its quote. On 21 October 2026 the owner supplied LinkedIn CDN photo URLs for Yash and Shehan; both photos were downloaded and stored locally. Their source URLs and owner-supplied provenance are recorded in `data/portfolio.json`. Direct profile access remains blocked, so this is not presented as an independently verified current-profile photo refresh. The portfolio links to the owner's LinkedIn recommendations.

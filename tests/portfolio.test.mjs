@@ -4,6 +4,7 @@ import {
   recommendationExcerpt,
 } from "../lib/experience.mjs";
 import { programmingYears } from "../lib/profile-story.mjs";
+import { selectedProjects } from "../lib/selected-work.mjs";
 import { projectTechnologies } from "../lib/technology-icons.mjs";
 import test from "node:test";
 import { newsWindow, projectPoint } from "../lib/exploration.mjs";
@@ -309,23 +310,26 @@ test("programming experience updates by calendar year without guessing a start m
   assert.equal(programmingYears(2016, new Date("2015-12-31T23:59:00Z")), 0);
   assert.equal(programmingYears(null), 0);
 });
-test("approved private project summaries work without publishing private repository URLs", async () => {
-  const p = profile.projects.find((p) => p.visibility === "private");
-  assert.ok(p);
-  assert.equal(p.repo, "");
-  const answer = answerQuestion(
-    "Tell me about Pilates Workout Platform",
-    profile,
-  );
-  assert.equal(answer.title, "Pilates Workout Platform");
-  assert.ok(answer.text.includes("development"));
-  assert.ok(answer.sources.every((source) => source.url.startsWith("mailto:")));
-  const html = await readFile(
-    new URL("../projects/pilates-workout-platform/index.html", import.meta.url),
-    "utf8",
-  );
-  assert.ok(html.includes("Discuss this project"));
-  assert.ok(!html.includes("github.com/eicdevs/Pilates"));
+test("private case studies work without inaccessible source links", async () => {
+  for (const p of profile.projects.filter((p) => p.visibility === "private")) {
+    assert.equal(p.repo, "");
+    assert.equal(p.source, "");
+    const answer = answerQuestion(`Tell me about ${p.name}`, profile);
+    assert.equal(answer.title, p.name);
+    assert.ok(
+      answer.sources.every(
+        (source) =>
+          source.url.startsWith("mailto:") ||
+          source.url === `projects/${p.slug}/`,
+      ),
+    );
+    const html = await readFile(
+      new URL(`../projects/${p.slug}/index.html`, import.meta.url),
+      "utf8",
+    );
+    assert.ok(html.includes("Discuss this project"));
+    assert.ok(!html.includes("View source code"));
+  }
 });
 test("the home story stays compact and technology logos appear within projects", async () => {
   const html = await readFile(
@@ -333,7 +337,8 @@ test("the home story stays compact and technology logos appear within projects",
     "utf8",
   );
   assert.ok(!html.includes('id="technologies"'));
-  assert.equal((html.match(/class="project-card"/g) || []).length, 5);
+  assert.equal((html.match(/class="project-card"/g) || []).length, 6);
+  assert.ok(html.includes('id="selected-next"'));
   assert.ok(html.includes("100+"));
   assert.ok(html.includes('data-programming-years="2016"'));
   assert.ok(html.includes("All India Science Competition"));
@@ -380,12 +385,10 @@ test("live GitHub refresh preserves the reviewed catalogue and approved private 
   assert.ok(
     curated.some(
       (r) =>
-        r.name === "Pilates Workout Platform" &&
-        r.visibility === "private" &&
-        r.html_url === "#",
+        r.name === "AgRag" && r.visibility === "private" && r.html_url === "#",
     ),
   );
-  assert.ok(curated.some((r) => r.name === "Sentinel-RAG"));
+  assert.ok(curated.some((r) => r.casePath === "projects/sentinel-rag/"));
   assert.equal(
     curated.length,
     profile.repositorySelection.length +
@@ -395,11 +398,52 @@ test("live GitHub refresh preserves the reviewed catalogue and approved private 
     curated.find((r) => r.visibility === "private"),
     "../",
   );
-  assert.ok(
-    privateRow.includes('href="../projects/pilates-workout-platform/"'),
-  );
+  assert.ok(privateRow.includes('href="../projects/agrag/"'));
   assert.ok(!privateRow.includes("github.com/eicdevs/Pilates"));
   assert.equal(paginate(curated, 0, 6).items.length, 6);
+});
+test("selected work stays within the owner's eleven-project pool and excludes company code", () => {
+  const expected = [
+    "agrag",
+    "focusreport",
+    "cashvault",
+    "asteroid",
+    "trace",
+    "roomquest",
+    "qnext",
+    "restaurant-voice-agent",
+    "agency-challenge",
+    "document-intelligence",
+    "excelbot",
+  ];
+  assert.deepEqual(
+    selectedProjects(profile).map((p) => p.slug),
+    expected,
+  );
+  const changed = structuredClone(profile);
+  changed.projects.push({
+    slug: "unreviewed",
+    name: "Unreviewed",
+    featured: true,
+  });
+  assert.deepEqual(
+    selectedProjects(changed).map((p) => p.slug),
+    expected,
+  );
+  const library = curatedRepos(profile, []);
+  assert.equal(library.length, 21);
+  assert.ok(
+    !library.some((r) =>
+      /indine|in-dine|firebase|question1|password_generator|tip_calculator/i.test(
+        r.name + " " + r.html_url,
+      ),
+    ),
+  );
+  assert.ok(
+    library
+      .filter((r) => r.visibility === "private")
+      .every((r) => r.casePath && r.html_url === "#"),
+  );
 });
 test("recommendation imports preserve checked profile context without changing quote text", () => {
   const incoming = profile.recommendations.map(({ image, ...r }) => r);
@@ -435,12 +479,17 @@ test("long recommendation previews truncate at a word boundary while the popup k
   assert.ok(recommendationCards([long]).includes('aria-haspopup="dialog"'));
   assert.ok(
     !recommendationCards([
-      { ...long, image: "images/people/shehan.jpg" },
+      {
+        ...long,
+        image: "images/people/shehan.jpg",
+        imageSource: undefined,
+        imageCheckedAt: undefined,
+      },
     ]).includes('class="quote-headshot"'),
   );
 });
 test("a refreshed photo needs its own source and check date", () => {
-  const base = profile.recommendations[0];
+  const { imageSource, imageCheckedAt, ...base } = profile.recommendations[0];
   const checked = {
     ...base,
     image: "https://example.com/current.jpg",

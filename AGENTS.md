@@ -1,0 +1,28 @@
+# Portfolio content preferences
+
+The owner selected a permanent pool for featured/selected project sections:
+AgRag, FocusReport, CashVault, Asteroid, TRACE, RoomQuest, Qnext, AI Calling Agent,
+Agency Challenge, Document Intelligence, and excelbot. Keep featured selections
+within this pool. `data/portfolio.json` contains the canonical slugs in
+`featuredProjectPolicy`. Both the homepage and work page use the same pool.
+
+Show no more than six selected projects or repository rows at once. Preserve
+mobile horizontal browsing and explicit pagination.
+
+The broader library can include substantial public and personally owned private
+projects. Exclude empty repositories, basic exercises, generated commit/activity
+projects, forks presented as original work, and duplicate versions of one product.
+Private projects open portfolio case studies, not inaccessible GitHub URLs.
+Keep their source checkouts and detailed assessments under ignored `planning/`.
+
+INDine is company work: keep it in venture/company context and out of the project
+catalogue. Do not publish or link its company source code. The owner declined
+reviewing organization-owned private source in this task.
+
+Use genuine app screenshots or accurately labelled captures of real app output.
+Do not generate app mockups, invent data/results, or imply an unconnected frontend
+is a working end-to-end deployment. Record upstream attribution and capture limits
+in `THIRD_PARTY_NOTICES.md`.
+
+Edit source templates and data, then run `npm run build` to update generated HTML
+and `content.json`. Run `npm test` for relevant functional changes.
