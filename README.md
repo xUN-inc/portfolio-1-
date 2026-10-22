@@ -112,7 +112,22 @@ SITE_URL=https://your-real-domain.ca npm run build
 
 Additional pages include `/work/`, `/about/`, `/ventures/xun-innovation/`, `/news/`, and individual news stories.
 
-This adds canonical URLs, absolute Open Graph/social image URLs, and `sitemap.xml`. Without a final domain, the build intentionally omits those URLs instead of inventing a canonical address. Add the same `SITE_URL` as a repository variable for the scheduled workflow. Serve `dist/` as static files with real 404 handling; no SPA catch-all rewrite is needed. No deployment, Firebase project, domain purchase, or remote push has been performed.
+This adds canonical URLs, absolute Open Graph/social image URLs, and `sitemap.xml`. Without a final domain, the build intentionally omits those URLs instead of inventing a canonical address. Add the same `SITE_URL` as a repository variable for both workflows. Serve `dist/` as static files with real 404 handling; no SPA catch-all rewrite is needed.
+
+### GitHub Pages setup
+
+The `Deploy portfolio to GitHub Pages` workflow builds and tests the site, then publishes only `dist/`. It runs after pushes to `master`, on manual dispatch, and after a successful `Refresh portfolio content` run. The completion trigger is needed because the refresh workflow's bot commits do not trigger push workflows. Local `planning/`, source checkouts, and credentials are not part of the deployment artifact.
+
+1. Open the repository's **Settings → Pages**. Under **Build and deployment → Source**, select **GitHub Actions**.
+2. Open **Actions → Deploy portfolio to GitHub Pages → Run workflow**, choose `master`, and run it. The deployment job provides the live URL.
+3. For the proposed subdomain, add `ak.xuninnovation.ca` under **Settings → Pages → Custom domain** and save it before changing DNS.
+4. At the DNS provider for `xuninnovation.ca`, add a **CNAME** record: name/host `ak`, target `akshunchauhan.github.io`. Do not include a protocol, repository name, or URL path. If the provider asks for a full record name, use `ak.xuninnovation.ca`.
+5. Once GitHub's DNS check passes and its certificate is ready, enable **Enforce HTTPS** in Pages settings. DNS and certificate setup can take up to 24 hours.
+6. Under **Settings → Secrets and variables → Actions → Variables**, create repository variable `SITE_URL` with value `https://ak.xuninnovation.ca`. Run the deployment workflow again to generate the canonical URLs, social metadata, and sitemap for the domain.
+
+Use the chosen hostname consistently if selecting a different subdomain. Uploading code alone does not enable Pages; the repository setting and first deployment above are required. Custom workflows do not require a `CNAME` file in the repository. The default repository URL can preview the site before DNS is connected; the custom domain is the intended final URL.
+
+Official guides: [custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [custom domain and DNS](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 
 ## Verification
 
@@ -135,7 +150,7 @@ Public reference sources: [RDP project story](https://rdpolytech.ca/news/blog-na
 
 ## Public-source update connections (version 3)
 
-`npm run sync:public` is working and was run against the real public sources. Google News RSS requires no key. The first run refreshed 10 article pages and checked three relevant Google News matches. Eleven verified stories are included. Public-source sync is now part of the six-hour GitHub workflow; it becomes scheduled only after the workflow is pushed to the repository default branch and GitHub Actions is enabled. No remote push or deployment has been performed.
+`npm run sync:public` is working and was run against the real public sources. Google News RSS requires no key. The first run refreshed 10 article pages and checked three relevant Google News matches. Eleven verified stories are included. Public-source sync is part of the six-hour GitHub workflow on the default branch. A successful refresh triggers the Pages deployment workflow once GitHub Pages is enabled as described above.
 
 For broader Google web search beyond Google News, optionally set `SERPAPI_API_KEY` in the environment/repository secrets. This uses SerpAPI's Google search endpoint. No key is included in the website.
 
