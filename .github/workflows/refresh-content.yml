@@ -1,0 +1,50 @@
+name: Refresh portfolio content
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+permissions:
+  contents: write
+concurrency:
+  group: portfolio-content-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+      - name: Refresh public GitHub snapshot
+        run: npm run sync:github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Import authorized editorial feed when configured
+        env:
+          CONTENT_FEED_URL: ${{ secrets.CONTENT_FEED_URL }}
+          CONTENT_FEED_TOKEN: ${{ secrets.CONTENT_FEED_TOKEN }}
+        run: |
+          if [ -n "$CONTENT_FEED_URL" ]; then
+            npm run sync:content
+          fi
+      - name: Refresh Google News and public article photos
+        run: npm run sync:public
+        env:
+          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
+          LINKEDIN_FEED_URL: ${{ secrets.LINKEDIN_FEED_URL }}
+          LINKEDIN_FEED_TOKEN: ${{ secrets.LINKEDIN_FEED_TOKEN }}
+      - name: Verify and rebuild crawlable pages
+        run: npm run build && npm test
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - name: Save refreshed content
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data index.html projects news work about speaking ventures content.json images/editorial robots.txt
+          if [ -f sitemap.xml ]; then git add sitemap.xml; fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore: refresh portfolio content'
+            git push
+          fi

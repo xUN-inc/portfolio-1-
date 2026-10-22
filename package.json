@@ -1,0 +1,18 @@
+{
+  "name": "akshun-chauhan-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs --dist",
+    "test": "node --test",
+    "sync:github": "node scripts/sync-github.mjs",
+    "sync:content": "node scripts/sync-content.mjs",
+    "sync:public": "node scripts/sync-public.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
