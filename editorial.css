@@ -322,8 +322,10 @@
   min-width: 0;
 }
 .recommendation-viewport {
-  overflow-x: hidden;
-  padding: 2px 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  padding: 2px 0 10px;
 }
 .recommendation-track {
   display: flex;
@@ -417,13 +419,37 @@
   letter-spacing: 1px;
   color: var(--editorial-muted);
 }
-.recommendation-pause {
+.recommendation-loop-footer small {
+  display: block;
+  margin-top: 7px;
+  font-size: 10px;
+  letter-spacing: 0;
+}
+.recommendation-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.recommendation-controls button {
   padding: 9px 13px;
   border: 1px solid var(--editorial-rule);
   border-radius: 20px;
   font-size: 10px;
   color: var(--editorial-ink);
   background: transparent;
+  min-height: 44px;
+  min-width: 44px;
+  cursor: pointer;
+}
+.recommendation-controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.recommendation-controls button:focus-visible,
+.recommendation-viewport:focus-visible {
+  outline: 2px solid var(--editorial-ink);
+  outline-offset: 3px;
 }
 .recommendation-loop:is(:hover, :focus-within, .is-paused)
   .recommendation-track {
@@ -656,6 +682,9 @@
   .recommendation-loop-footer > span {
     font-size: 6px;
     letter-spacing: 0.6px;
+  }
+  .recommendation-loop-footer {
+    flex-wrap: wrap;
   }
   .recommendation-pause {
     font-size: 9px;
