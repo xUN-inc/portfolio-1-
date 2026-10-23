@@ -23,7 +23,7 @@ test("both profile pages expose the requested title, image, identity, and distin
     assert.ok(!html.includes('content="noindex"'));
   }
   const simple = await readFile(resolve(root, "simple/index.html"), "utf8");
-  for (const heading of ["Who I am", "Who I want to be", "Skills"]) assert.ok(simple.includes(`>${heading}</h2>`));
+  for (const heading of ["Who I am", "What I’m working toward", "Skills"]) assert.ok(simple.includes(`>${heading}</h2>`));
   assert.ok(simple.includes('width="224" height="224"'));
 });
 

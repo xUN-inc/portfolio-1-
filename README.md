@@ -1,6 +1,6 @@
 # Akshun Chauhan — portfolio
 
-A fast, portable portfolio built from the existing site. The warm studio design includes an expressive cursor, draggable Earth, a solar experiment, compact project selection, career history, venture pages, photo-led news, and a sourced portfolio guide. Five featured projects lead to nine case studies, including one approved private-project summary. Programming experience is calculated from 2016; the 100+ lifetime project count is separate from the public GitHub library. No frontend framework, runtime package dependencies, or database is required for the portfolio.
+A fast, portable portfolio built from the existing site. The warm studio design includes an expressive cursor, compact project selection, career history, venture pages, photo-led news, and a sourced portfolio guide. Eleven selected projects sit within fourteen case studies, including approved private-project summaries; each project view shows no more than six at once. Programming experience is calculated from 2016; the 100+ lifetime project count is separate from the public GitHub library. No frontend framework, runtime package dependencies, or database is required for the portfolio.
 
 ## Run locally
 

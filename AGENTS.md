@@ -34,7 +34,7 @@ The owner asked to keep this work local on branch `simplified` until they author
 pushing or publishing it.
 
 On `/simple/`, show a prominent portrait on mobile and explicitly answer: Who I am,
-Who I want to be, and Skills. Keep the full `/` homepage layout unchanged; its
+Who I want to be (labelled “What I’m working toward”), and Skills. Keep the full `/` homepage layout unchanged; its
 metadata may use the owner-approved AI builder/entrepreneur/agent-deployment title.
 Do not reintroduce the removed BSc entry. Remaining education is a closed disclosure
 on About. Canonical URLs use the owned `siteURL` unless explicitly overridden.

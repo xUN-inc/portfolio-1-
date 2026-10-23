@@ -64,7 +64,7 @@ export async function buildDetailPages({ root, profile, repos, siteURL }) {
       .map((p) => newsCard(p, { base: "../" }))
       .join(
         "",
-      )}</div><p id="news-empty" class="repo-empty" hidden>No stories match that search. Try a different publication or keyword.</p><div class="archive-pagination"><button id="news-previous" class="page-button" disabled aria-label="Previous news page">← Previous</button><span id="news-page" aria-live="polite">1 / ${Math.ceil(sorted.length / 6)}</span><button id="news-next" class="page-button" aria-label="Next news page">More stories →</button></div><p class="source-note">A collection of verified public matches. Sources are refreshed automatically when the update job runs. Google News can discover additional coverage; search results are not an exhaustive record of the web.</p>`,
+      )}</div><p id="news-empty" class="repo-empty" hidden>No stories match that search. Try a different publication or keyword.</p><div class="archive-pagination"><button id="news-previous" class="page-button" disabled aria-label="Previous news page">← Previous</button><span id="news-page" aria-live="polite">1 / ${Math.ceil(sorted.length / 6)}</span><button id="news-next" class="page-button" aria-label="Next news page">More stories →</button></div><p class="source-note">Selected coverage with links to the original sources. The scheduled refresh checks for new coverage and updated article metadata. Search results are not an exhaustive record of the web.</p>`,
     { type: "CollectionPage" },
   );
   for (const p of sorted) {
@@ -83,7 +83,7 @@ export async function buildDetailPages({ root, profile, repos, siteURL }) {
   await page(
     "work/",
     "Project library",
-    "Explore Akshun Chauhan’s live GitHub project library, filtered by research, AI, data, and software.",
+    "Explore Akshun Chauhan’s reviewed project library, including public repositories and approved private-project case studies across AI, research, and software.",
     `<div class="detail-intro"><p class="eyebrow">THE WORKBENCH / SELECTED PROJECTS</p><h1>A few ideas.<br><span>A lot of building.</span></h1><p>Native apps, campus navigation, applied research, and local AI. Eleven selected projects, followed by a broader library of substantial work. Private projects open case studies; public projects also link to source.</p></div><section class="directory-selected" aria-labelledby="selected-heading"><h2 id="selected-heading">A closer look.</h2><div class="project-grid" id="selected-projects">${selected
       .slice(0, 6)
       .map((p, i) => projectCard(p, i, "../"))

@@ -845,7 +845,7 @@
       "year": "2025"
     },
     {
-      "name": "TCPS 2: CORE",
+      "name": "TCPS 2: CORE-2022",
       "issuer": "Government of Canada",
       "year": "2024"
     }
@@ -1202,13 +1202,13 @@
   },
   "landing": {
     "role": "AI builder & entrepreneur.",
-    "specialization": "Expert in agent deployment on smaller infrastructure.",
-    "intro": "I design and deploy AI agents, retrieval systems, and software that make complex information useful — with a focus on local and resource-constrained infrastructure.",
-    "direction": "I want to make useful AI accessible to smaller teams, building practical agents that fit their hardware, budgets, and real workflows.",
+    "specialization": "Specializing in AI agent deployment on local and resource-constrained infrastructure.",
+    "intro": "I build AI agents, retrieval systems, and software that turn complex information into useful tools.",
+    "direction": "My goal is to help smaller teams put AI to work, with agents that fit their hardware, budgets, and everyday needs.",
     "skills": [
       {
         "name": "AI systems & deployment",
-        "description": "Local models, agent orchestration, RAG, and vector databases."
+        "description": "Local models, agent orchestration, retrieval-augmented generation (RAG), and vector databases."
       },
       {
         "name": "Software engineering",

@@ -42,7 +42,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data index.html projects news work about speaking ventures content.json images/editorial robots.txt
+          git add data index.html simple projects news work about speaking ventures content.json images/editorial robots.txt
           if [ -f sitemap.xml ]; then git add sitemap.xml; fi
           if ! git diff --cached --quiet; then
             git commit -m 'chore: refresh portfolio content'
