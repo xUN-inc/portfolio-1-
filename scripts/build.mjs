@@ -29,6 +29,7 @@ import {
 } from "../lib/experience.mjs";
 import { buildDetailPages } from "./detail-pages.mjs";
 import { buildSimplePage } from "./simple-page.mjs";
+import { publicSiteURL, pageMetadata, profilePageSchema } from "../lib/seo.mjs";
 const root = resolve(import.meta.dirname, "..");
 const readJSON = async (path) =>
   JSON.parse(await readFile(resolve(root, path), "utf8"));
@@ -39,58 +40,10 @@ const [profile, rawRepos, githubProfile, template] = await Promise.all([
   readFile(resolve(root, "src/index.template.html"), "utf8"),
 ]);
 const repos = normalizeRepos(rawRepos);
-let siteURL = "";
-if (process.env.SITE_URL) {
-  const u = new URL(process.env.SITE_URL);
-  if (u.protocol !== "https:" || u.pathname !== "/")
-    throw new Error("SITE_URL must be an HTTPS origin with no path.");
-  siteURL = u.origin;
-}
+const siteURL = publicSiteURL(profile);
 const jsonForHTML = (value) => JSON.stringify(value).replace(/</g, "\\u003c");
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  ...(siteURL ? { url: siteURL + "/" } : {}),
-  mainEntity: {
-    "@type": "Person",
-    name: profile.name,
-    jobTitle: profile.title,
-    description: profile.bio,
-    email: profile.email,
-    sameAs: [
-      `https://github.com/${profile.github}`,
-      profile.linkedin,
-      ...profile.ventures.map((v) => v.url),
-    ],
-    knowsAbout: [
-      "Software Development",
-      "Applied Research",
-      "Data Analysis",
-      "IoT",
-      "Energy Innovation",
-      "Artificial Intelligence",
-    ],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Red Deer",
-      addressRegion: "Alberta",
-      addressCountry: "CA",
-    },
-    alumniOf: profile.education.map((item) => ({
-      "@type": "CollegeOrUniversity",
-      name: item.institution,
-    })),
-    award: [
-      "Winner, All India Science Competition, model making, 2019",
-      "First place, NASA Space Apps Challenge Edmonton, 2025",
-    ],
-  },
-};
-function seo(path = "", image = "images/editorial/nasa-team.jpg") {
-  return siteURL
-    ? `<link rel="canonical" href="${e(siteURL + "/" + path)}"><meta property="og:url" content="${e(siteURL + "/" + path)}"><meta property="og:image" content="${e(siteURL + "/" + image)}"><meta property="og:image:alt" content="Akshun and the RDP team at NASA Space Apps Edmonton"><meta name="twitter:image" content="${e(siteURL + "/" + image)}">`
-    : "";
-}
+const schema = profilePageSchema(profile, siteURL);
+const seo = (path = "", image = "images/about/akshunchauhan.jpg", alt = "Akshun Chauhan") => pageMetadata(siteURL, path, image, alt);
 const reviewDate = new Intl.DateTimeFormat("en-CA", {
   year: "numeric",
   month: "short",
@@ -99,6 +52,8 @@ const reviewDate = new Intl.DateTimeFormat("en-CA", {
 }).format(new Date(profile.contentReviewedAt + "T00:00:00Z"));
 const original = curatedRepos(profile, repos);
 const sections = {
+  SEARCH_TITLE: e(profile.searchTitle),
+  SEARCH_DESCRIPTION: e(profile.searchDescription),
   SEO: seo(),
   THEME_HEAD: themeHead(),
   THEME_BUTTON: themeButton(),
@@ -181,11 +136,11 @@ for (const [index, p] of profile.projects.entries()) {
     "@type": "CreativeWork",
     name: p.name,
     description: p.summary,
-    author: { "@type": "Person", name: profile.name },
+    author: { "@type": "Person", name: profile.name, ...(siteURL ? {"@id": siteURL + "/#akshun-chauhan"} : {}) },
     ...(p.repo ? { sameAs: p.repo } : {}),
     ...(siteURL ? { url: siteURL + "/" + path } : {}),
   };
-  const caseHTML = `<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${e(title)}</title><meta name="description" content="${e(p.summary)}"><meta name="theme-color" content="#f3f0e8"><meta property="og:title" content="${e(title)}"><meta property="og:description" content="${e(p.summary)}"><meta property="og:type" content="article"><meta name="twitter:card" content="summary_large_image">${seo(path, p.image || "images/editorial/nasa-team.jpg")}<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../style.css">${themeHead("../../")}<script type="application/ld+json">${jsonForHTML(caseSchema)}</script></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="../../" aria-label="Akshun Chauhan home"><span class="brand-mark">ak<span>↗</span></span><span class="brand-name">AKSHUN<br>CHAUHAN</span></a><div class="header-actions">${themeButton()}<a class="header-contact" href="mailto:${e(profile.email)}">Let’s talk <span>↗</span></a></div></header><main id="main" class="container"><div class="case-header"><a class="case-back" href="../../#work">← Back to selected work</a><p class="eyebrow case-eyebrow">${e(p.eyebrow)}</p><h1>${e(p.name)}<span class="mint">.</span></h1><p class="case-summary">${e(p.summary)}</p><div class="case-meta"><span><small>CONTRIBUTION</small>${e(p.role)}</span><span><small>PROJECT YEAR</small>${e(p.year)}</span><div class="case-technology-meta"><small>TECHNOLOGIES</small>${projectTechnologies(p.tags, "../../")}</div></div></div><div class="case-image">${projectVisual(p, "../../")}</div><div class="case-layout"><aside class="case-aside"><p class="eyebrow">EXPLORE THE PROJECT</p><a class="button button-primary" href="${p.repo ? e(p.repo) : `mailto:${e(profile.email)}?subject=${encodeURIComponent(p.name)}`}"${p.repo ? ' target="_blank" rel="noopener noreferrer"' : ""}>${p.repo ? "View source code" : "Discuss this project"} ${arrow}</a>${p.demo ? `<a class="text-link" href="${e(safeURL(p.demo))}" target="_blank" rel="noopener noreferrer">Open project demo ↗</a>` : ""}<ul class="case-facts">${p.facts.map((f) => `<li>${e(f)}</li>`).join("")}</ul></aside><article class="case-story"><div><h2>The question</h2><p>${e(p.challenge)}</p></div><div><h2>The approach</h2><p>${e(p.approach)}</p></div><div><h2>The result</h2><p>${e(p.outcome)}</p></div>${p.source ? `<p class="case-source">Project information from the original portfolio and linked public sources. <a class="text-link" href="${e(safeURL(p.source))}" target="_blank" rel="noopener noreferrer">${e(p.sourceLabel)} ↗</a></p>` : `<p class="case-source">Project summary shared with permission. Source code is private; contact me to discuss the work.</p>`}</article></div><div class="case-next"><span>NEXT PROJECT</span><a href="../${e(next.slug)}/">${e(next.name)} ↗</a></div></main><footer class="case-footer container"><span>© ${new Date().getUTCFullYear()} Akshun Chauhan</span><a href="../../#contact">Good work starts with a conversation ↗</a></footer></body></html>`;
+  const caseHTML = `<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${e(title)}</title><meta name="description" content="${e(p.summary)}"><meta name="theme-color" content="#f3f0e8"><meta property="og:title" content="${e(title)}"><meta property="og:description" content="${e(p.summary)}"><meta property="og:type" content="article"><meta name="twitter:card" content="summary_large_image">${seo(path, p.image || "images/editorial/nasa-team.jpg", p.imageAlt || p.name)}<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../style.css">${themeHead("../../")}<script type="application/ld+json">${jsonForHTML(caseSchema)}</script></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="../../" aria-label="Akshun Chauhan home"><span class="brand-mark">ak<span>↗</span></span><span class="brand-name">AKSHUN<br>CHAUHAN</span></a><div class="header-actions">${themeButton()}<a class="header-contact" href="mailto:${e(profile.email)}">Let’s talk <span>↗</span></a></div></header><main id="main" class="container"><div class="case-header"><a class="case-back" href="../../#work">← Back to selected work</a><p class="eyebrow case-eyebrow">${e(p.eyebrow)}</p><h1>${e(p.name)}<span class="mint">.</span></h1><p class="case-summary">${e(p.summary)}</p><div class="case-meta"><span><small>CONTRIBUTION</small>${e(p.role)}</span><span><small>PROJECT YEAR</small>${e(p.year)}</span><div class="case-technology-meta"><small>TECHNOLOGIES</small>${projectTechnologies(p.tags, "../../")}</div></div></div><div class="case-image">${projectVisual(p, "../../")}</div><div class="case-layout"><aside class="case-aside"><p class="eyebrow">EXPLORE THE PROJECT</p><a class="button button-primary" href="${p.repo ? e(p.repo) : `mailto:${e(profile.email)}?subject=${encodeURIComponent(p.name)}`}"${p.repo ? ' target="_blank" rel="noopener noreferrer"' : ""}>${p.repo ? "View source code" : "Discuss this project"} ${arrow}</a>${p.demo ? `<a class="text-link" href="${e(safeURL(p.demo))}" target="_blank" rel="noopener noreferrer">Open project demo ↗</a>` : ""}<ul class="case-facts">${p.facts.map((f) => `<li>${e(f)}</li>`).join("")}</ul></aside><article class="case-story"><div><h2>The question</h2><p>${e(p.challenge)}</p></div><div><h2>The approach</h2><p>${e(p.approach)}</p></div><div><h2>The result</h2><p>${e(p.outcome)}</p></div>${p.source ? `<p class="case-source">Project information from the original portfolio and linked public sources. <a class="text-link" href="${e(safeURL(p.source))}" target="_blank" rel="noopener noreferrer">${e(p.sourceLabel)} ↗</a></p>` : `<p class="case-source">Project summary shared with permission. Source code is private; contact me to discuss the work.</p>`}</article></div><div class="case-next"><span>NEXT PROJECT</span><a href="../${e(next.slug)}/">${e(next.name)} ↗</a></div></main><footer class="case-footer container"><span>© ${new Date().getUTCFullYear()} Akshun Chauhan</span><a href="../../#contact">Good work starts with a conversation ↗</a></footer></body></html>`;
   await writeFile(resolve(dir, "index.html"), caseHTML);
 }
 const detailPaths = await buildDetailPages({ root, profile, repos, siteURL });

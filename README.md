@@ -104,7 +104,7 @@ A later LLM upgrade should use a server-side endpoint with rate limits and the s
 
 The build outputs a standard static `dist/` directory suitable for Firebase Hosting, Cloudflare Pages, Netlify, or another static host. The site has crawlable HTML, unique case study titles and descriptions, ProfilePage/Person and CreativeWork structured data, semantic headings, accessible navigation, and a custom 404 page.
 
-When the final domain is chosen, build with its HTTPS origin:
+The public origin defaults to `siteURL` in `data/portfolio.json`. Override it only when deliberately changing the deployment domain:
 
 ```sh
 SITE_URL=https://your-real-domain.ca npm run build
@@ -112,7 +112,7 @@ SITE_URL=https://your-real-domain.ca npm run build
 
 Additional pages include `/work/`, `/about/`, `/ventures/xun-innovation/`, `/news/`, and individual news stories.
 
-This adds canonical URLs, absolute Open Graph/social image URLs, and `sitemap.xml`. Without a final domain, the build intentionally omits those URLs instead of inventing a canonical address. Add the same `SITE_URL` as a repository variable for both workflows. Serve `dist/` as static files with real 404 handling; no SPA catch-all rewrite is needed.
+This adds canonical URLs, absolute Open Graph/social image URLs, and `sitemap.xml`. The configured public domain is used even when no environment variable is set. An explicit `SITE_URL` repository variable can override it for both workflows. Serve `dist/` as static files with real 404 handling; no SPA catch-all rewrite is needed.
 
 ### GitHub Pages setup
 
@@ -178,7 +178,7 @@ The header switch is available on the home page, case studies, archives, venture
 
 ### Current résumé import
 
-Both supplied February 2026 DOCX versions contain the same professional content. The profile now records the RDP position dates, Computer Programming Diploma (2024) with President’s List recognition, BSc Computer Science at IGNOU (2022), and two dated research presentations with co-authors and venues. Homepage presentation cards remain compact; full citations live on `/speaking/`. The portfolio guide answers from the same structured records.
+Both supplied February 2026 DOCX versions contain the same professional content. The profile now records the RDP position dates, Computer Programming Diploma (2024) with President’s List recognition, two dated research presentations with co-authors and venues. Homepage presentation cards remain compact; full citations live on `/speaking/`. The portfolio guide answers from the same structured records.
 
 The résumé also supplies Red Deer Advocate, Central Alberta Online, and CTV source links. Those pages were inaccessible to the research tools, so their entries are described as résumé-linked coverage and link to the original publisher. No article text or broadcast transcript was copied. The shared NASA team image is credited to RDP. The metadata refresh job can try those publisher domains using its normal public requests.
 
@@ -201,3 +201,11 @@ An authorized recommendation feed may supply `currentContext`, `headline`, `reco
 The `simplified` branch adds `/simple/` as a concise alternative entry point. The original `/` homepage keeps its design, sections, interactions, and six-project browsing. The new page introduces Akshun with his portrait, name, AI builder/entrepreneur role, smaller-infrastructure specialization, skills, and direction; it links into the existing full portfolio without duplicating the project gallery or long sections. The primary action is **Explore full portfolio**. Full recommendations, career, news, and project browsing remain available in the original site. `/ventures/` adds a directory for the existing company detail pages.
 
 Edit `data/portfolio.json` → `landing`, `src/simple.template.html`, and `landing.css`; `scripts/simple-page.mjs` generates `simple/index.html` during the normal build. `simple.js` handles the alternate page's menu and chatbot, including root-relative source links. The local preview is `http://127.0.0.1:4173/simple/`. This work stays local until the owner authorizes pushing or publishing it.
+
+## Search and answer discovery
+
+`siteURL` in `data/portfolio.json` defaults public canonical URLs to `https://ak.xuninnovation.ca`; `SITE_URL` can override that origin for a deliberate domain migration. Builds always include canonical URLs, absolute social images, unique page metadata, a sitemap (including `/simple/`), and an unrestricted robots.txt. Both profile pages share a stable Person identifier, real portrait, public profile links, expertise, and confirmed education. The simple page answers “Who I am,” “Who I want to be,” and “Skills” in ordinary HTML before JavaScript runs. The BSc entry is removed from the website profile data, structured data, and downloadable résumé; remaining education is behind an accessible, closed disclosure on About.
+
+Googlebot and OpenAI’s OAI-SearchBot can read the static HTML under the wildcard allow rule. No special AI schema or hidden keywords are needed for Google AI features, and no ranking or answer inclusion is guaranteed. After publication is authorized, verify the domain in Google Search Console, submit `/sitemap.xml`, and inspect `/` and `/simple/` for indexing. Re-scrape a shared link if an external service still shows its cached title or image. Hosting/CDN rules must also allow legitimate crawlers.
+
+References: [Google AI features](https://developers.google.com/search/docs/appearance/ai-features), [SEO fundamentals](https://developers.google.com/search/docs/fundamentals/seo-starter-guide), [OpenAI search crawler](https://developers.openai.com/api/docs/bots).

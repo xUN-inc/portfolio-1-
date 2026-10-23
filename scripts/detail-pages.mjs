@@ -1,3 +1,4 @@
+import { pageMetadata } from "../lib/seo.mjs";
 import { themeHead, themeButton } from "../lib/theme-chrome.mjs";
 import {
   storyMetrics,
@@ -42,9 +43,7 @@ export async function buildDetailPages({ root, profile, repos, siteURL }) {
     const directory = resolve(root, path);
     await mkdir(directory, { recursive: true });
     paths.push(path);
-    const canonical = siteURL
-      ? `<link rel="canonical" href="${e(siteURL + "/" + path)}"><meta property="og:url" content="${e(siteURL + "/" + path)}"><meta property="og:image" content="${e(siteURL + "/" + image)}">`
-      : "";
+    const canonical = pageMetadata(siteURL, path, image, title);
     const schema = {
       "@context": "https://schema.org",
       "@type": type,
@@ -52,7 +51,7 @@ export async function buildDetailPages({ root, profile, repos, siteURL }) {
       description,
       ...(siteURL ? { url: siteURL + "/" + path } : {}),
     };
-    const html = `<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${e(title)} — Akshun Chauhan</title><meta name="description" content="${e(description)}"><meta name="theme-color" content="#f3f0e8"><meta property="og:title" content="${e(title)} — Akshun Chauhan"><meta property="og:description" content="${e(description)}"><meta name="twitter:card" content="summary_large_image">${canonical}<link rel="icon" type="image/svg+xml" href="${base}favicon.svg"><link rel="stylesheet" href="${base}style.css">${themeHead(base)}<script type="application/ld+json">${json(schema)}</script></head><body class="detail-page"><div id="expressive-cursor" aria-hidden="true"><span></span></div><div id="cursor-trail" aria-hidden="true"></div><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="${base}" aria-label="Akshun Chauhan home"><span class="brand-mark">ak<span>↗</span></span><span class="brand-name">AKSHUN<br>CHAUHAN</span></a><nav class="detail-nav" aria-label="Main navigation"><a href="${base}work/">Work</a><a href="${base}about/">About</a><a href="${base}news/">News</a></nav><div class="header-actions">${themeButton()}<a class="header-contact" href="${base}#contact">Let’s talk ↗</a></div></header><main id="main" class="container detail-main"><a class="case-back" href="${base}">← Back to home</a>${body}</main><footer class="case-footer container"><span>© ${new Date().getFullYear()} Akshun Chauhan</span><a href="${base}#contact">Let’s make something useful ↗</a></footer><script type="application/json" id="portfolio-data">${json({ profile, repos, base })}</script><script type="module" src="${base}archive.js"></script></body></html>`;
+    const html = `<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${e(title)} — Akshun Chauhan</title><meta name="description" content="${e(description)}"><meta name="theme-color" content="#f3f0e8"><meta property="og:title" content="${e(title)} — Akshun Chauhan"><meta property="og:description" content="${e(description)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${e(title)} — Akshun Chauhan"><meta name="twitter:description" content="${e(description)}"><meta property="og:site_name" content="Akshun Chauhan"><meta property="og:type" content="website"><meta name="robots" content="index, follow, max-image-preview:large">${canonical}<link rel="icon" type="image/svg+xml" href="${base}favicon.svg"><link rel="stylesheet" href="${base}style.css">${themeHead(base)}<script type="application/ld+json">${json(schema)}</script></head><body class="detail-page"><div id="expressive-cursor" aria-hidden="true"><span></span></div><div id="cursor-trail" aria-hidden="true"></div><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="${base}" aria-label="Akshun Chauhan home"><span class="brand-mark">ak<span>↗</span></span><span class="brand-name">AKSHUN<br>CHAUHAN</span></a><nav class="detail-nav" aria-label="Main navigation"><a href="${base}work/">Work</a><a href="${base}about/">About</a><a href="${base}news/">News</a></nav><div class="header-actions">${themeButton()}<a class="header-contact" href="${base}#contact">Let’s talk ↗</a></div></header><main id="main" class="container detail-main"><a class="case-back" href="${base}">← Back to home</a>${body}</main><footer class="case-footer container"><span>© ${new Date().getFullYear()} Akshun Chauhan</span><a href="${base}#contact">Let’s make something useful ↗</a></footer><script type="application/json" id="portfolio-data">${json({ profile, repos, base })}</script><script type="module" src="${base}archive.js"></script></body></html>`;
     await writeFile(resolve(directory, "index.html"), html);
   }
   const sorted = profile.press.toSorted((a, b) => b.date.localeCompare(a.date));

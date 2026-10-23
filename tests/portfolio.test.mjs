@@ -376,7 +376,8 @@ test("the portfolio guide retains résumé dates and structured previous roles",
   const education = answerQuestion("Tell me about your education", profile);
   assert.ok(education.text.includes("Computer Programming Diploma"));
   assert.ok(education.text.includes("2024"));
-  assert.ok(education.text.includes("Indira Gandhi National Open University"));
+  assert.ok(!education.text.includes("Indira Gandhi National Open University"));
+  assert.ok(!education.text.includes("BSc"));
 });
 test("presentation details preserve the two dated résumé citations", async () => {
   const dates = profile.presentations.map((p) => p.date);

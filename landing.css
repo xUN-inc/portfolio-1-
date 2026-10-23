@@ -7,8 +7,8 @@
 .landing-portrait {
   display: block;
   margin-inline: auto;
-  width: 108px;
-  height: 108px;
+  width: 224px;
+  height: 224px;
   object-fit: cover;
   object-position: 50% 30%;
   border-radius: 50%;
@@ -25,6 +25,15 @@
   margin: 0;
 }
 .landing-role { font-size: clamp(23px, 3vw, 34px); line-height: 1.3; margin: 13px 0; color: var(--editorial-ink); }
+.landing-question, .landing-direction > h2 {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  color: var(--editorial-ink);
+  margin: 20px 0 8px;
+}
+.landing-skills { margin-top: 24px; }
 .landing-specialization { color: var(--editorial-muted); font-size: 17px; margin: 10px 0; }
 .landing-introduction { max-width: 650px; margin: 16px auto 0; font-size: 16px; line-height: 1.75; color: var(--editorial-muted); }
 .landing-actions { display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; margin: 24px 0 20px; }
@@ -33,11 +42,11 @@
 .landing-current { font-size: 12px; line-height: 1.9; color: var(--editorial-muted); }
 .landing-current > span { display: inline-block; margin-left: 18px; }
 .landing-current a { color: var(--editorial-ink); text-decoration: underline; text-underline-offset: 3px; }
-.landing-capabilities { display: grid; grid-template-columns: repeat(3, 1fr); text-align: left; gap: 24px; max-width: 910px; margin: 32px auto 0; border-block: 1px solid var(--editorial-rule); padding: 22px 0; }
-.landing-capabilities h2 { font-size: 15px; line-height: 1.4; letter-spacing: 0; margin-bottom: 7px; color: var(--editorial-ink); }
+.landing-capabilities { display: grid; grid-template-columns: repeat(3, 1fr); text-align: left; gap: 24px; max-width: 910px; margin: 14px auto 0; border-block: 1px solid var(--editorial-rule); padding: 22px 0; }
+.landing-capabilities h3 { font-size: 15px; line-height: 1.4; letter-spacing: 0; margin-bottom: 7px; color: var(--editorial-ink); }
 .landing-capabilities p { font-size: 12px; line-height: 1.7; color: var(--editorial-muted); margin: 0; }
 .landing-direction { max-width: 710px; margin: 21px auto 0; font-size: 13px; line-height: 1.8; color: var(--editorial-muted); }
-.landing-direction > span { display: block; color: var(--editorial-ink); font-weight: 600; margin-bottom: 3px; }
+.landing-direction > p { margin: 0; }
 .landing-highlights { display: flex; justify-content: center; gap: 10px 24px; flex-wrap: wrap; margin: 24px auto 0; max-width: 920px; font-size: 10px; color: var(--editorial-muted); line-height: 1.7; }
 .landing-highlights strong { color: var(--editorial-ink); }
 .landing-highlights a { text-decoration: underline; text-underline-offset: 3px; }
@@ -60,7 +69,7 @@
 .landing-page a:focus-visible { outline: 2px solid var(--editorial-ink); outline-offset: 5px; }
 @media (max-width: 680px) {
   .landing-page .landing-intro { padding-top: 23px; padding-bottom: 10px; }
-  .landing-portrait { width: 82px; height: 82px; }
+  .landing-portrait { width: clamp(180px, 56vw, 224px); height: auto; aspect-ratio: 1; }
   .landing-location { font-size: 8px; margin-top: 18px; }
   .landing-intro h1 { font-size: clamp(39px, 10.2vw, 58px); letter-spacing: -1.7px; }
   .landing-role { font-size: 23px; margin-top: 12px; }
@@ -72,7 +81,7 @@
   .landing-current { font-size: 10px; }
   .landing-current > span { display: block; margin-left: 0; }
   .landing-capabilities { gap: 15px; padding-block: 18px; margin-top: 20px; grid-template-columns: 1fr; }
-  .landing-capabilities h2 { font-size: 13px; margin-bottom: 3px; }
+  .landing-capabilities h3 { font-size: 13px; margin-bottom: 3px; }
   .landing-capabilities p { font-size: 11px; }
   .landing-direction { text-align: left; font-size: 12px; margin-top: 17px; }
   .landing-highlights { gap: 8px 16px; text-align: left; justify-content: start; font-size: 9px; }

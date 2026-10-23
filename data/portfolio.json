@@ -1073,13 +1073,6 @@
       "year": "2024",
       "recognition": "President’s List",
       "description": "Recognized for academic achievement with a GPA of 3.8 or higher on the 4.0 scale."
-    },
-    {
-      "qualification": "BSc Computer Science",
-      "institution": "Indira Gandhi National Open University",
-      "year": "2022",
-      "recognition": "Programming, databases & analytical thinking",
-      "description": "Built a foundation in programming, databases, and analytical problem-solving."
     }
   ],
   "repositorySelection": [
@@ -1209,9 +1202,9 @@
   },
   "landing": {
     "role": "AI builder & entrepreneur.",
-    "specialization": "AI agents. Practical software. Smaller infrastructure.",
+    "specialization": "Expert in agent deployment on smaller infrastructure.",
     "intro": "I design and deploy AI agents, retrieval systems, and software that make complex information useful — with a focus on local and resource-constrained infrastructure.",
-    "direction": "I’m working toward making useful AI accessible to smaller teams, without assuming they have large cloud budgets or dedicated infrastructure.",
+    "direction": "I want to make useful AI accessible to smaller teams, building practical agents that fit their hardware, budgets, and real workflows.",
     "skills": [
       {
         "name": "AI systems & deployment",
@@ -1226,5 +1219,8 @@
         "description": "Data pipelines, IoT systems, SQL, and applied analysis."
       }
     ]
-  }
+  },
+  "siteURL": "https://ak.xuninnovation.ca",
+  "searchTitle": "Akshun Chauhan — AI builder, entrepreneur, expert in agent deployment on smaller infrastructure",
+  "searchDescription": "Akshun Chauhan builds AI agents, local retrieval systems, and practical software for smaller infrastructure. Entrepreneur and Scientific Data Analyst in Alberta."
 }
