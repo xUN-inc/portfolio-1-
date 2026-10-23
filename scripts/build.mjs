@@ -28,6 +28,7 @@ import {
   ventureCards,
 } from "../lib/experience.mjs";
 import { buildDetailPages } from "./detail-pages.mjs";
+import { buildSimplePage } from "./simple-page.mjs";
 const root = resolve(import.meta.dirname, "..");
 const readJSON = async (path) =>
   JSON.parse(await readFile(resolve(root, path), "utf8"));
@@ -189,6 +190,7 @@ for (const [index, p] of profile.projects.entries()) {
 }
 const detailPaths = await buildDetailPages({ root, profile, repos, siteURL });
 casePaths.push(...detailPaths);
+casePaths.push(await buildSimplePage({ root, profile, repos, siteURL }));
 await writeFile(
   resolve(root, "content.json"),
   jsonForHTML({ profile, repos, generatedAt: new Date().toISOString() }),
@@ -215,6 +217,9 @@ for (const file of [
   "style.css",
   "theme.css",
   "editorial.css",
+  "landing.css",
+  "simple.js",
+  "simple",
   "script.js",
   "favicon.svg",
   "robots.txt",

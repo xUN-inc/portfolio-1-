@@ -26,3 +26,9 @@ in `THIRD_PARTY_NOTICES.md`.
 
 Edit source templates and data, then run `npm run build` to update generated HTML
 and `content.json`. Run `npm test` for relevant functional changes.
+
+Keep the original full portfolio at `/` with its existing design and interactions.
+`/simple/` is an alternative concise landing page, not a replacement homepage. Keep it
+short: identity, skills, direction, and clear links into the full portfolio.
+The owner asked to keep this work local on branch `simplified` until they authorize
+pushing or publishing it.

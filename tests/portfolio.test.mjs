@@ -222,6 +222,8 @@ test("home and case study HTML contain crawlable content and every local asset r
     "speaking/index.html",
     "ventures/xun-innovation/index.html",
     "ventures/indine/index.html",
+    "ventures/index.html",
+    "simple/index.html",
     ...profile.press.map((p) => `news/${p.slug}/index.html`),
   ]) {
     const html = await readFile(resolve(root, page), "utf8");
@@ -345,6 +347,25 @@ test("the home story stays compact and technology logos appear within projects",
   const badges = projectTechnologies(["Flutter", "Dart", "<bad>"], "../");
   assert.ok(badges.includes("../images/skills/flutter.svg"));
   assert.ok(badges.includes("&lt;bad&gt;"));
+});
+
+test("the simple introduction is a separate entry point into the original full portfolio", async () => {
+  const full = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const simple = await readFile(new URL("../simple/index.html", import.meta.url), "utf8");
+  assert.ok(full.includes("Data. Code."));
+  assert.ok(full.includes('id="repo-search"'));
+  assert.ok(full.includes('id="recommendations"'));
+  assert.ok(simple.includes('<h1 id="hero-heading">Akshun Chauhan'));
+  assert.ok(simple.includes(escapeHTML(profile.landing.role)));
+  assert.ok(simple.includes(escapeHTML(profile.landing.direction)));
+  assert.equal((simple.match(/class="project-card"/g) || []).length, 0);
+  assert.ok(!simple.includes('id="repo-search"'));
+  assert.ok(simple.includes('href="../">Explore full portfolio'));
+  for (const destination of ["work/", "about/", "ventures/", "news/", "speaking/"]) {
+    assert.ok(simple.includes(`href="../${destination}"`));
+  }
+  const script = await readFile(new URL("../simple.js", import.meta.url), "utf8");
+  assert.ok(script.includes('new URL(source.url, new URL("../", document.baseURI))'));
 });
 
 test("the portfolio guide retains résumé dates and structured previous roles", () => {

@@ -25,6 +25,7 @@ import {
   recommendationCards,
   recommendationMarquee,
   careerSection,
+  ventureCards,
 } from "../lib/experience.mjs";
 import { slugify } from "../lib/public-sources.mjs";
 export async function buildDetailPages({ root, profile, repos, siteURL }) {
@@ -108,6 +109,12 @@ export async function buildDetailPages({ root, profile, repos, siteURL }) {
         "",
       )}</div><p id="repo-empty" class="repo-empty" hidden>No projects match that search.</p><div class="github-footer"><p id="github-status" class="sync-status" role="status">Saved GitHub snapshot</p><div class="repo-pagination" role="group" aria-label="Project pages"><button id="previous-repos" class="page-button" aria-label="Previous six projects" disabled>←</button><span id="repo-page" aria-live="polite">1–6 / ${original.length}</span><button id="more-repos" class="page-button" aria-label="Next six projects">More projects →</button></div><span id="repo-count">${original.length} curated projects</span></div></section>`,
     { type: "CollectionPage" },
+  );
+  await page(
+    "ventures/",
+    "Businesses & ventures",
+    "Explore Akshun Chauhan’s work building Xun Innovation and INDine.ca.",
+    `<div class="detail-intro"><p class="eyebrow">ENTREPRENEURSHIP</p><h1>What I’m building.</h1><p>Practical software for the people running the business. Explore the companies, their products, and the problems they work on.</p></div><div class="venture-duo">${ventureCards(profile.ventures, "../")}</div>`,
   );
   await page(
     "about/",

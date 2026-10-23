@@ -1206,5 +1206,25 @@
     ],
     "pageSize": 6,
     "note": "Only these owner-selected projects may appear as selected work. INDine stays in ventures, with no company source link."
+  },
+  "landing": {
+    "role": "AI builder & entrepreneur.",
+    "specialization": "AI agents. Practical software. Smaller infrastructure.",
+    "intro": "I design and deploy AI agents, retrieval systems, and software that make complex information useful — with a focus on local and resource-constrained infrastructure.",
+    "direction": "I’m working toward making useful AI accessible to smaller teams, without assuming they have large cloud budgets or dedicated infrastructure.",
+    "skills": [
+      {
+        "name": "AI systems & deployment",
+        "description": "Local models, agent orchestration, RAG, and vector databases."
+      },
+      {
+        "name": "Software engineering",
+        "description": "Python, full-stack applications, APIs, and automation."
+      },
+      {
+        "name": "Research & data",
+        "description": "Data pipelines, IoT systems, SQL, and applied analysis."
+      }
+    ]
   }
 }
