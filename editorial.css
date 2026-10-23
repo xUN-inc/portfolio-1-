@@ -906,6 +906,12 @@
 .recommendation-detail-links .text-link {
   font-size: 11px;
 }
+.recommendation-role-details {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--editorial-muted);
+  margin-top: 18px;
+}
 .recommendation-checked {
   font-size: 10px;
   color: var(--editorial-muted);

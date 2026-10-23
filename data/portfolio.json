@@ -8,7 +8,7 @@
   "linkedin": "https://www.linkedin.com/in/akshunchauhan/",
   "bio": "I work at the intersection of applied research, data, and software. At Red Deer Polytechnic, I connect IoT sensors, cloud infrastructure, and analysis to help make sense of energy systems. Alongside that work, I build applications and explore how AI can turn complex information into something people can use.",
   "now": "Working on energy innovation at Red Deer Polytechnic, exploring local AI and document intelligence, and building Xun Innovation and INDine.ca.",
-  "contentReviewedAt": "2026-10-21",
+  "contentReviewedAt": "2026-10-22",
   "githubSnapshotAt": "2026-10-22T21:41:44.270Z",
   "projects": [
     {
@@ -582,6 +582,27 @@
       "contextSource": "Owner correction, 2026-10-21",
       "imageSource": "https://media.licdn.com/dms/image/v2/C4D03AQGO0Xc_xjL9Uw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1646170108107?e=1794441600&v=beta&t=kiEw712e-Ws7EbBQmoyI48v1Hzri9ExOmScsCrd4AU8",
       "imageCheckedAt": "2026-10-21",
+      "imageProvenance": "Owner supplied this LinkedIn photo URL; downloaded successfully. Current LinkedIn profile photo status was not independently verified."
+    },
+    {
+      "name": "Subhayan Thakurta",
+      "initials": "ST",
+      "context": "Worked with Akshun on the same team",
+      "currentContext": "Applied Research Chair · Data Driven Innovation",
+      "headline": "Applied Research Chair - Data Driven Innovation | Artificial Intelligence Design & Deployment | Agent Development | Cybersecurity | Digital Transformation & Industry 4.0 | Gen AI System Design",
+      "recommendedAt": "2026-10-22",
+      "quote": "I had the pleasure of working with Akshun on several AI projects, and I can confidently say he is an exceptional software engineer with strong technical expertise and a practical approach to solving complex problems. Akshun has an excellent understanding of database technologies, particularly vector databases, and brings deep expertise in AI deployment and integrating AI solutions into real-world applications. His ability to bridge software engineering fundamentals with emerging AI technologies makes him a valuable asset to any team. What impressed me most was his ability to understand complex technical challenges and translate them into effective, scalable solutions. He is knowledgeable, dependable, and genuinely passionate about building impactful technology. I highly recommend Akshun to any organization looking for a talented software engineer with strong expertise in AI systems, databases, and production-ready AI deployment.",
+      "summary": "On collaborating across AI projects, vector databases, scalable software engineering, and production-ready AI deployment.",
+      "url": "https://www.linkedin.com/in/akshunchauhan/details/recommendations/",
+      "profileURL": "https://www.linkedin.com/in/subhayanthakurta/",
+      "quoteSource": "https://www.linkedin.com/in/akshunchauhan/details/recommendations/",
+      "sourceCheckedAt": "2026-10-22",
+      "sourceProvenance": "Full recommendation, headline, relationship, and date supplied by the owner from LinkedIn. Direct profile retrieval returned HTTP 429; not independently verified.",
+      "profileStatus": "owner-confirmed",
+      "image": "images/people/subhayan.jpg",
+      "imageStatus": "owner-supplied-link",
+      "imageSource": "https://media.licdn.com/dms/image/v2/D5603AQFhbl-B2h4lmw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1694203758925?e=1794441600&v=beta&t=AUZ2lW_ft-8iu7cAS-T12zc_tf7Mtj5jqwHAdCSseoc",
+      "imageCheckedAt": "2026-10-22",
       "imageProvenance": "Owner supplied this LinkedIn photo URL; downloaded successfully. Current LinkedIn profile photo status was not independently verified."
     }
   ],

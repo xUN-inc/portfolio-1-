@@ -488,6 +488,27 @@ test("long recommendation previews truncate at a word boundary while the popup k
     ]).includes('class="quote-headshot"'),
   );
 });
+test("dated recommendations retain their headline and relationship through import and popup rendering", () => {
+  const entry = {
+    ...profile.recommendations[0],
+    headline: 'Research lead <AI & databases>',
+    recommendedAt: '2026-10-22',
+  };
+  const imported = validateFeed({ recommendations: [entry] }).recommendations[0];
+  assert.equal(imported.headline, entry.headline);
+  assert.equal(imported.recommendedAt, entry.recommendedAt);
+  const { headline, recommendedAt, ...olderFeed } = imported;
+  const preserved = preserveRecommendationMedia([entry], [olderFeed])[0];
+  assert.equal(preserved.headline, headline);
+  assert.equal(preserved.recommendedAt, recommendedAt);
+  const detail = recommendationDetail(preserved);
+  assert.ok(detail.includes(escapeHTML(entry.headline)));
+  assert.ok(!detail.includes('<AI & databases>'));
+  assert.ok(detail.includes('datetime="2026-10-22"'));
+  assert.ok(detail.includes('October 22, 2026'));
+  assert.ok(detail.includes(escapeHTML(entry.context)));
+  assert.throws(() => validateFeed({ recommendations: [{ ...entry, recommendedAt: 'yesterday' }] }));
+});
 test("a refreshed photo needs its own source and check date", () => {
   const { imageSource, imageCheckedAt, ...base } = profile.recommendations[0];
   const checked = {
